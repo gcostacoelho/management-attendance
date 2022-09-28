@@ -1,11 +1,9 @@
-import java.sql.Date;
 import java.sql.Time;
-
 import javax.xml.crypto.Data;
 
 public class Senha {
     private int numeroSen;
-    private Date dataSen;
+    private Data dataSen;
     private Time horaSen;
 
     public String gerarSenha(int senhaAnt){
@@ -24,12 +22,12 @@ public class Senha {
     }
 
 
-    public Date getDataSen() {
+    public Data getDataSen() {
         return dataSen;
     }
 
 
-    public void setDataSen(Date dataSen) {
+    public void setDataSen(Data dataSen) {
         this.dataSen = dataSen;
     }
 
@@ -44,7 +42,7 @@ public class Senha {
     }
 
 
-    public Senha(int numeroSen, Date dataSen, Time horaSen) {
+    public Senha(int numeroSen, Data dataSen, Time horaSen) {
         this.numeroSen = numeroSen;
         this.dataSen = dataSen;
         this.horaSen = horaSen;
