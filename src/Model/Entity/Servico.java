@@ -1,3 +1,4 @@
+package Model.Entity;
 public class Servico {
     private String sigla, nome, desc;
     private boolean status;

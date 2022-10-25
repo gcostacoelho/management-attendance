@@ -1,3 +1,4 @@
+package Model.Entity;
 import java.sql.Time;
 import javax.xml.crypto.Data;
 

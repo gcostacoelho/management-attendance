@@ -1,3 +1,4 @@
+package Model.Entity;
 public class Guiche {
     private int numeroGui;
     private String descricaoGui;
