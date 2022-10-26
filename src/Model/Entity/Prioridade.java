@@ -1,3 +1,4 @@
+package Model.Entity;
 public class Prioridade {
     private String nomePri, descricaoPri;
     private int peso;
