@@ -1,4 +1,9 @@
 package Model.Entity;
+
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import Model.Entity.Guiche;
+
 public class Guiche {
     private int numeroGui;
     private String descricaoGui;

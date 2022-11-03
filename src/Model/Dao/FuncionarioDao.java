@@ -1,6 +1,5 @@
 package Model.Dao;
 
-
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import Model.Entity.Funcionario;

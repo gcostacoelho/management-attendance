@@ -1,10 +1,10 @@
 package Model.Entity;
+import java.sql.Date;
 import java.sql.Time;
-import javax.xml.crypto.Data;
 
 public class Senha {
     private int numeroSen;
-    private Data dataSen;
+    private Date dateSen;
     private Time horaSen;
 
     public String gerarSenha(int senhaAnt){
@@ -23,13 +23,13 @@ public class Senha {
     }
 
 
-    public Data getDataSen() {
-        return dataSen;
+    public Date getDateSen() {
+        return dateSen;
     }
 
 
-    public void setDataSen(Data dataSen) {
-        this.dataSen = dataSen;
+    public void setDateSen(Date dateSen) {
+        this.dateSen = dateSen;
     }
 
 
@@ -42,10 +42,9 @@ public class Senha {
         this.horaSen = horaSen;
     }
 
-
-    public Senha(int numeroSen, Data dataSen, Time horaSen) {
+    public Senha(int numeroSen, Date dateSen, Time horaSen) {
         this.numeroSen = numeroSen;
-        this.dataSen = dataSen;
+        this.dateSen = dateSen;
         this.horaSen = horaSen;
     }
     

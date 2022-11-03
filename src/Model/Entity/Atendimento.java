@@ -1,10 +1,11 @@
 package Model.Entity;
+
+import java.sql.Date;
 import java.sql.Time;
-import javax.xml.crypto.Data;
 
 public class Atendimento {
     private String nota, statusAte;
-    private Data dataAte;
+    private Date dataAte;
     private Time horaAte;
 
     public int chamarProx(int senhaAtual){
@@ -43,12 +44,12 @@ public class Atendimento {
     }
 
 
-    public Data getDataAte() {
+    public Date getDataAte() {
         return dataAte;
     }
 
 
-    public void setDataAte(Data dataAte) {
+    public void setDataAte(Date dataAte) {
         this.dataAte = dataAte;
     }
 
@@ -63,7 +64,7 @@ public class Atendimento {
     }
 
 
-    public Atendimento(String nota, String statusAte, Data dataAte, Time horaAte) {
+    public Atendimento(String nota, String statusAte, Date dataAte, Time horaAte) {
         this.nota = nota;
         this.statusAte = statusAte;
         this.dataAte = dataAte;
