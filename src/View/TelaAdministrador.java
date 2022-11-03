@@ -19,10 +19,18 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import javax.swing.JTextPane;
+import javax.swing.JList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaAdministrador extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -64,53 +72,168 @@ public class TelaAdministrador extends JFrame {
 		layeredPane.setBounds(462, 5, 1, 1);
 		panel.add(layeredPane);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_1, null);
-		panel_1.setLayout(null);
+		JPanel lista_servicos = new JPanel();
+		lista_servicos.setForeground(new Color(51, 51, 51));
+		tabbedPane.addTab("New tab", null, lista_servicos, null);
+		lista_servicos.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Lista de Serviços");
-		lblNewLabel_1.setBounds(10, 10, 77, 13);
-		panel_1.add(lblNewLabel_1);
+		lblNewLabel_1.setBounds(12, 37, 156, 13);
+		lista_servicos.add(lblNewLabel_1);
 		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_2, null);
-		panel_2.setLayout(null);
+		JPanel desc_bar = new JPanel();
+		desc_bar.setBackground(new Color(154, 153, 150));
+		desc_bar.setBounds(12, 64, 891, 39);
+		lista_servicos.add(desc_bar);
+		desc_bar.setLayout(null);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Cadstro de Serviço");
-		lblNewLabel_1_1.setBounds(10, 10, 77, 13);
-		panel_2.add(lblNewLabel_1_1);
+		JCheckBox checkBox = new JCheckBox("");
+		checkBox.setBounds(8, 8, 21, 23);
+		desc_bar.add(checkBox);
 		
-		JPanel panel_4 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_4, null);
-		panel_4.setLayout(null);
+		JTextPane txtpnSigla = new JTextPane();
+		txtpnSigla.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnSigla.setBackground(new Color(154, 153, 150));
+		txtpnSigla.setEditable(false);
+		txtpnSigla.setText("Sigla");
+		txtpnSigla.setBounds(37, 8, 42, 21);
+		desc_bar.add(txtpnSigla);
+		
+		JTextPane txtpnNome = new JTextPane();
+		txtpnNome.setText("Nome");
+		txtpnNome.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnNome.setEditable(false);
+		txtpnNome.setBackground(new Color(154, 153, 150));
+		txtpnNome.setBounds(91, 8, 42, 21);
+		desc_bar.add(txtpnNome);
+		
+		JTextPane txtpnDescrio = new JTextPane();
+		txtpnDescrio.setText("Descrição");
+		txtpnDescrio.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnDescrio.setEditable(false);
+		txtpnDescrio.setBackground(new Color(154, 153, 150));
+		txtpnDescrio.setBounds(303, 8, 91, 21);
+		desc_bar.add(txtpnDescrio);
+		
+		JTextPane txtpnStatus = new JTextPane();
+		txtpnStatus.setText("Status");
+		txtpnStatus.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnStatus.setEditable(false);
+		txtpnStatus.setBackground(new Color(154, 153, 150));
+		txtpnStatus.setBounds(552, 8, 64, 21);
+		desc_bar.add(txtpnStatus);
+		
+		JTextPane txtpnAes = new JTextPane();
+		txtpnAes.setText("Ações");
+		txtpnAes.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnAes.setEditable(false);
+		txtpnAes.setBackground(new Color(154, 153, 150));
+		txtpnAes.setBounds(799, 8, 49, 21);
+		desc_bar.add(txtpnAes);
+		
+		JList list_1 = new JList();
+		list_1.setBounds(22, 115, 881, 436);
+		lista_servicos.add(list_1);
+		
+		JPanel cadastro_servico = new JPanel();
+		tabbedPane.addTab("New tab", null, cadastro_servico, null);
+		cadastro_servico.setLayout(null);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Cadastro de Serviço");
+		lblNewLabel_1_1.setBounds(10, 10, 146, 13);
+		cadastro_servico.add(lblNewLabel_1_1);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(20, 35, 893, 542);
+		cadastro_servico.add(panel_1);
+		panel_1.setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(22, 48, 196, 19);
+		panel_1.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblInformeASigla = new JLabel("Informe a sigla");
+		lblInformeASigla.setBounds(22, 21, 114, 15);
+		panel_1.add(lblInformeASigla);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(267, 48, 534, 19);
+		panel_1.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setBounds(267, 21, 114, 15);
+		panel_1.add(lblNome);
+		
+		JLabel lblInformeADescrio = new JLabel("Informe a descrição");
+		lblInformeADescrio.setBounds(22, 91, 196, 15);
+		panel_1.add(lblInformeADescrio);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(22, 118, 779, 172);
+		panel_1.add(textField_2);
+		
+		JLabel lblInformeOStatus = new JLabel("Informe o status");
+		lblInformeOStatus.setBounds(22, 329, 196, 15);
+		panel_1.add(lblInformeOStatus);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(22, 356, 196, 24);
+		panel_1.add(comboBox);
+		
+		JButton btnNewButton = new JButton("Cadastrar Serviço");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(633, 477, 168, 25);
+		panel_1.add(btnNewButton);
+		
+		JPanel lista_usuario = new JPanel();
+		tabbedPane.addTab("New tab", null, lista_usuario, null);
+		lista_usuario.setLayout(null);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Lista de Usuários");
-		lblNewLabel_1_2.setBounds(10, 10, 96, 13);
-		panel_4.add(lblNewLabel_1_2);
+		lblNewLabel_1_2.setBounds(10, 10, 175, 13);
+		lista_usuario.add(lblNewLabel_1_2);
 		
-		JPanel panel_5 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_5, null);
-		panel_5.setLayout(null);
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nome"
+			}
+		));
+		table.setBounds(23, 94, 362, 189);
+		lista_usuario.add(table);
+		
+		JPanel cadastro_usuario = new JPanel();
+		tabbedPane.addTab("New tab", null, cadastro_usuario, null);
+		cadastro_usuario.setLayout(null);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Cadastrar Usuário");
 		lblNewLabel_1_3.setBounds(10, 10, 103, 13);
-		panel_5.add(lblNewLabel_1_3);
+		cadastro_usuario.add(lblNewLabel_1_3);
 		
-		JPanel panel_6 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_6, null);
-		panel_6.setLayout(null);
+		JPanel lista_prioridade = new JPanel();
+		tabbedPane.addTab("New tab", null, lista_prioridade, null);
+		lista_prioridade.setLayout(null);
 		
 		JLabel lblNewLabel_1_4 = new JLabel("Lista de Prioridades");
 		lblNewLabel_1_4.setBounds(10, 10, 118, 13);
-		panel_6.add(lblNewLabel_1_4);
+		lista_prioridade.add(lblNewLabel_1_4);
 		
-		JPanel panel_7 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_7, null);
-		panel_7.setLayout(null);
+		JPanel cadastro_prioridade = new JPanel();
+		tabbedPane.addTab("New tab", null, cadastro_prioridade, null);
+		cadastro_prioridade.setLayout(null);
 		
 		JLabel lblNewLabel_1_5 = new JLabel("Cadastro de Prioridade");
 		lblNewLabel_1_5.setBounds(10, 10, 126, 13);
-		panel_7.add(lblNewLabel_1_5);
+		cadastro_prioridade.add(lblNewLabel_1_5);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(255, 255, 255));
@@ -137,22 +260,22 @@ public class TelaAdministrador extends JFrame {
 		lblServio.setBounds(10, 52, 187, 25);
 		panel_3.add(lblServio);
 		
-		JButton btnListServ = new JButton("Lista de Serviços");
+		JButton btnListServ = new JButton("Lista");
 		btnListServ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedComponent(panel_1);
+				tabbedPane.setSelectedComponent(lista_servicos);
 			}
 		});
-		btnListServ.setBounds(42, 87, 132, 21);
+		btnListServ.setBounds(30, 85, 154, 21);
 		panel_3.add(btnListServ);
 		
-		JButton btnCadServ = new JButton("Cadastar Serviço");
+		JButton btnCadServ = new JButton("Cadastar");
 		btnCadServ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedComponent(panel_2);
+				tabbedPane.setSelectedComponent(cadastro_servico);
 			}
 		});
-		btnCadServ.setBounds(42, 118, 132, 21);
+		btnCadServ.setBounds(30, 118, 154, 21);
 		panel_3.add(btnCadServ);
 		
 		JPanel panel_11_1 = new JPanel();
@@ -167,19 +290,19 @@ public class TelaAdministrador extends JFrame {
 		lblServio_1.setBounds(10, 169, 187, 25);
 		panel_3.add(lblServio_1);
 		
-		JButton btnListUser = new JButton("Lista de Usuários");
+		JButton btnListUser = new JButton("Lista");
 		btnListUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedComponent(panel_4);
+				tabbedPane.setSelectedComponent(lista_usuario);
 			}
 		});
 		btnListUser.setBounds(42, 204, 132, 21);
 		panel_3.add(btnListUser);
 		
-		JButton btnCadUser = new JButton("Cadastrar Usuário");
+		JButton btnCadUser = new JButton("Cadastrar");
 		btnCadUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedComponent(panel_5);
+				tabbedPane.setSelectedComponent(cadastro_usuario);
 			}
 		});
 		btnCadUser.setBounds(42, 235, 132, 21);
@@ -188,7 +311,7 @@ public class TelaAdministrador extends JFrame {
 		JButton btnCadPrio = new JButton("Cadastrar Prioridade");
 		btnCadPrio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedComponent(panel_7);
+				tabbedPane.setSelectedComponent(cadastro_prioridade);
 			}
 		});
 		btnCadPrio.setBounds(42, 350, 132, 21);
@@ -197,7 +320,7 @@ public class TelaAdministrador extends JFrame {
 		JButton btnListPrio = new JButton("Lista de Prioridades");
 		btnListPrio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedComponent(panel_6);
+				tabbedPane.setSelectedComponent(lista_prioridade);
 			}
 		});
 		btnListPrio.setBounds(42, 319, 132, 21);
