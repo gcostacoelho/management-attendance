@@ -5,6 +5,7 @@ public class Funcionario {
     private String cpf;
     private String telefone;
     private String email;
+    private String cargo;
     private int permissao;
     
 	public Funcionario() {
@@ -49,6 +50,14 @@ public class Funcionario {
 
 	public void setPermissao(int permissao) {
 		this.permissao = permissao;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
         
 }

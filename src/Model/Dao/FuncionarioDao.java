@@ -9,7 +9,7 @@ public class FuncionarioDao {
 	public void salvar(Funcionario funcionario) {
 		Conexao conexao = new Conexao();
         String sql = "INSERT INTO " +
-                "funcionario (nomeFun, cpf, telefone, email,permissao)" + "VALUES (?,?,?,?,?)";
+                "funcionario (nomeFun, cpf, telefone, email, cargo, permissao)" + "VALUES (?,?,?,?,?,?)";
         
         try {
         	PreparedStatement stmt = conexao.getConn().prepareStatement(sql);
@@ -17,7 +17,8 @@ public class FuncionarioDao {
 			stmt.setString(2, funcionario.getCpf());
 			stmt.setString(3, funcionario.getTelefone());
 			stmt.setString(4, funcionario.getEmail());
-			stmt.setInt(5, funcionario.getPermissao());
+			stmt.setString(5, funcionario.getCargo());
+			stmt.setInt(6, funcionario.getPermissao());
         	
         	stmt.execute();
             stmt.close();
