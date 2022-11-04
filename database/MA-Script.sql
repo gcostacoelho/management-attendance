@@ -1,5 +1,9 @@
 -- MySQL Workbench Forward Engineering
 
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
 -- -----------------------------------------------------
 -- Schema ma
 -- -----------------------------------------------------
@@ -40,8 +44,9 @@ CREATE TABLE IF NOT EXISTS `ma`.`Funcionario` (
   `cpf` VARCHAR(11) NOT NULL,
   `telefone` VARCHAR(11) NULL,
   `email` VARCHAR(45) NOT NULL,
+  `cargo` VARCHAR(50) NOT NULL,
   `permissao` TINYINT NOT NULL,
-  `Guiche_idGuiche` INT NOT NULL,
+  `Guiche_idGuiche` INT,
   PRIMARY KEY (`idFuncionario`),
     FOREIGN KEY (`Guiche_idGuiche`)
     REFERENCES `ma`.`Guiche` (`idGuiche`)
@@ -49,6 +54,20 @@ CREATE TABLE IF NOT EXISTS `ma`.`Funcionario` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `ma`.`Usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ma`.`Usuario` (
+  `idFuncionario` INT NOT NULL AUTO_INCREMENT,
+  `usuario` VARCHAR(10) NOT NULL,
+  `senha` VARCHAR(8) NOT NULL,
+  `Funcionario_idFuncionario` INT NOT NULL,
+  PRIMARY KEY (`idFuncionario`),
+    FOREIGN KEY (`Funcionario_idFuncionario`)
+    REFERENCES `ma`.`Funcionario` (`idFuncionario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `ma`.`Servico`
@@ -145,3 +164,12 @@ CREATE TABLE IF NOT EXISTS `ma`.`guiche` (
   PRIMARY KEY (`idGuiche`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+
+select * from funcionario
