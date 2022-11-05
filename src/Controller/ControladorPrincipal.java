@@ -1,6 +1,9 @@
 package Controller;
 
 import Model.Entity.Funcionario;
+
+import java.util.ArrayList;
+
 import Model.Dao.FuncionarioDao;
 import View.TelaAdministrador;
 import View.TelaCadastro;
@@ -29,4 +32,8 @@ public class ControladorPrincipal {
 		FuncionarioDao funcionarioDao = new FuncionarioDao();
 		funcionarioDao.salvar(funcionario);
 	}
+	public ArrayList<Funcionario> consultar() {
+		FuncionarioDao funcionarioDao = new FuncionarioDao();
+        return funcionarioDao.consulta();     	
+   }
 }

@@ -15,6 +15,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JToggleButton;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.SwingConstants;
@@ -26,6 +27,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Controller.ControladorPrincipal;
+import Model.Entity.Funcionario;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
@@ -498,6 +500,7 @@ public class TelaAdministrador extends JFrame {
 		btnListUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedComponent(lista_usuario);
+				addLinha();
 			}
 		});
 		btnListUser.setBounds(42, 204, 132, 21);
@@ -609,5 +612,14 @@ public class TelaAdministrador extends JFrame {
 	
 	public JComboBox getpermiFunc() {
 		return permiFunc;
+	}
+	public void addLinha() {
+		DefaultTableModel model =  (DefaultTableModel)table.getModel();
+		ControladorPrincipal controle = new ControladorPrincipal();
+		ArrayList<Funcionario> funcionarios = controle.consultar();
+		model.setNumRows(0);
+		for(int i=0; i < funcionarios.size() ; i++) {
+			model.addRow((new String[] {funcionarios.get(i).getNomeFun(), funcionarios.get(i).getCpf(), funcionarios.get(i).getCargo()}));
+		}
 	}
 }
