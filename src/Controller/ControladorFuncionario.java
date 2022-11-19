@@ -8,7 +8,7 @@ import Model.Dao.FuncionarioDao;
 import View.TelaAdministrador;
 import View.TelaCadastro;
 
-public class ControladorPrincipal {
+public class ControladorFuncionario {
 	
 	private Funcionario funcionario;
 	private int permissao;
@@ -20,13 +20,14 @@ public class ControladorPrincipal {
 		funcionario.setTelefone(frame.getTelFunc().getText());
 		funcionario.setEmail(frame.getEmailFunc().getText());
 		funcionario.setCargo(frame.getCargoFunc().getText());
-		if (frame.getpermiFunc().getSelectedItem() == "Administrador") {
+		System.out.println(frame.getpermiFunc().getSelectedIndex());
+		if (frame.getpermiFunc().getSelectedIndex() == 1) {
 			permissao = 1;
 		}else {
 			permissao = 2;
 		}
 		
-		System.out.println(permissao);
+		//System.out.println(permissao);
 		funcionario.setPermissao(permissao);
 		
 		FuncionarioDao funcionarioDao = new FuncionarioDao();

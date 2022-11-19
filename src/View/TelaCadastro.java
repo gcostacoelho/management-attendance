@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controller.ControladorPrincipal;
+import Controller.ControladorFuncionario;
 import Model.Entity.Funcionario;
 
 import javax.swing.JLabel;
@@ -107,7 +107,7 @@ public class TelaCadastro extends JFrame{
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ControladorPrincipal controller = new ControladorPrincipal();
+				ControladorFuncionario controller = new ControladorFuncionario();
 		        controller.executa(TelaCadastro.this);
 		        JOptionPane.showMessageDialog(null, nomeFun.getText() + " Cadastrado com sucesso!");
 		        telefone.setText("");

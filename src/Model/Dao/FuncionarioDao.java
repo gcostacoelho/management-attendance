@@ -42,17 +42,17 @@ public class FuncionarioDao {
 	    	ResultSet rs = stmt.executeQuery();
 	    	funcionarios = new ArrayList<Funcionario>();
 	    	while (rs.next()) {
-	    	// criando o objeto Contato
-	    	Funcionario funcionario = new Funcionario();
-	    	funcionario.setNomeFun(rs.getString("nomeFun"));
-	    	funcionario.setCpf(rs.getString("cpf"));
-	    	funcionario.setTelefone(rs.getString("telefone"));
-	    	funcionario.setEmail(rs.getString("email"));
-	    	funcionario.setCargo(rs.getString("cargo"));
-	    	funcionario.setPermissao(Integer.parseInt(rs.getString("permissao")));
-	    	
-	    	// adicionando o objeto lista
-	    	funcionarios.add(funcionario);
+				// criando o objeto Contato
+				Funcionario funcionario = new Funcionario();
+				funcionario.setNomeFun(rs.getString("nomeFun"));
+				funcionario.setCpf(rs.getString("cpf"));
+				funcionario.setTelefone(rs.getString("telefone"));
+				funcionario.setEmail(rs.getString("email"));
+				funcionario.setCargo(rs.getString("cargo"));
+				funcionario.setPermissao(Integer.parseInt(rs.getString("permissao")));
+				
+				// adicionando o objeto lista
+				funcionarios.add(funcionario);
 	    	}
 	    	
 	    	rs.close();

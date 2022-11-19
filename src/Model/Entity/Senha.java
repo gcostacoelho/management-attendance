@@ -6,6 +6,8 @@ public class Senha {
     private int numeroSen;
     private Date dateSen;
     private Time horaSen;
+    
+    public Senha() {}
 
     public String gerarSenha(int senhaAnt){
         String senha = "Senha: " + senhaAnt + "Local: Sala1";
@@ -42,11 +44,7 @@ public class Senha {
         this.horaSen = horaSen;
     }
 
-    public Senha(int numeroSen, Date dateSen, Time horaSen) {
-        this.numeroSen = numeroSen;
-        this.dateSen = dateSen;
-        this.horaSen = horaSen;
-    }
+    
     
     
 }

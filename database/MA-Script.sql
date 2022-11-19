@@ -171,5 +171,22 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
+use ma;
 
-select * from funcionario
+insert into guiche (numeroGui, descricaoGui) values("AD1", "Guiche Administrador");
+
+insert into funcionario (nomeFun, cpf, telefone, email, cargo, permissao, Guiche_idGuiche) 
+values ("Administrador", "21020312007", "94512355", "admin@gmail.com", "Administrador", 1, 1);
+
+insert into usuario (usuario, senha, Funcionario_idFuncionario) values ("admin", "admin", 1);
+
+#insert into usuario (usuario, senha, Funcionario_idFuncionario) values ("gustavo", "123", 2);
+
+select * from funcionario;
+
+#delete from funcionario; 
+
+#delete from guiche;
+select * from guiche;
+
+#delete from usuario;

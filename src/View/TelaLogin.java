@@ -19,13 +19,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.border.LineBorder;
+
+import Controller.ControladorLogin;
+
 import javax.swing.border.BevelBorder;
 
 public class TelaLogin {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField usuario;
 	private JPasswordField senha;
+	private int respLogin;
 
 	/**
 	 * Launch the application.
@@ -88,11 +92,18 @@ public class TelaLogin {
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (usuario.getText().equals("admin") && senha.getText().equals("admin")) {
-					TelaCadastro menu = new TelaCadastro();
+				ControladorLogin controle = new ControladorLogin();
+				respLogin = controle.efetuaLogin(TelaLogin.this);
+				if (respLogin == 1) {
+					TelaAdministrador menu = new TelaAdministrador();
 					menu.setVisible(true);
 					frame.setVisible(false);
-				}else {
+				}else if(respLogin == 2){
+					TelaAtendente menu = new TelaAtendente();
+					menu.setVisible(true);
+					frame.setVisible(false);
+				}
+				else {
 					JOptionPane.showMessageDialog(null, "Usuário/Senha incorretos!");
 					usuario.setText("");
 					senha.setText("");
@@ -107,5 +118,21 @@ public class TelaLogin {
 		panel.add(senha);
 		frame.setBounds(100, 100, 979, 540);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public JTextField getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(JTextField usuario) {
+		this.usuario = usuario;
+	}
+
+	public JPasswordField getSenha() {
+		return senha;
+	}
+
+	public void setSenha(JPasswordField senha) {
+		this.senha = senha;
 	}
 }
