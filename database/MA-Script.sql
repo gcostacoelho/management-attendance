@@ -58,11 +58,11 @@ ENGINE = InnoDB;
 -- Table `ma`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ma`.`Usuario` (
-  `idFuncionario` INT NOT NULL AUTO_INCREMENT,
+  `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(10) NOT NULL,
   `senha` VARCHAR(8) NOT NULL,
   `Funcionario_idFuncionario` INT NOT NULL,
-  PRIMARY KEY (`idFuncionario`),
+  PRIMARY KEY (`idUsuario`),
     FOREIGN KEY (`Funcionario_idFuncionario`)
     REFERENCES `ma`.`Funcionario` (`idFuncionario`)
     ON DELETE NO ACTION

@@ -6,7 +6,7 @@ public class Funcionario {
     private String telefone;
     private String email;
     private String cargo;
-    private int permissao;
+    private int permissao, id;
     
 	public Funcionario() {
 	
@@ -58,6 +58,14 @@ public class Funcionario {
 
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
         
 }

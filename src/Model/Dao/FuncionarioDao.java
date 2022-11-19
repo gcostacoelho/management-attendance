@@ -65,4 +65,27 @@ public class FuncionarioDao {
 			return null;
 		}
 	}
+	
+	public Funcionario consultaIdFunc() {
+    	Conexao conexao = new Conexao();
+    	PreparedStatement stmt;
+    	Funcionario funcionario = new Funcionario();
+    	
+		try {
+			stmt = conexao.getConn().prepareStatement("SELECT func.idFuncionario FROM funcionario func ORDER BY func.idFuncionario DESC LIMIT 1;");
+		
+	    	ResultSet rs = stmt.executeQuery();
+	    	rs.next();
+	    	funcionario.setId(rs.getInt("idFuncionario"));
+	    	
+	    	rs.close();
+	    	stmt.close();
+	    	return funcionario;
+	    	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

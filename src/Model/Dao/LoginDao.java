@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import Model.Entity.Login;
 
 public class LoginDao {
+	
 	public ArrayList<Login> consulta(Login login){
 		Conexao conexao = new Conexao();
 		PreparedStatement stmt;

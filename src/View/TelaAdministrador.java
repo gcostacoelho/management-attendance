@@ -51,6 +51,8 @@ public class TelaAdministrador extends JFrame {
 	private JTextField emailFunc;
 	private JTextField telFunc;
 	private JComboBox permiFunc;
+	private JTextField usuarioFunc;
+	private JTextField senhaFunc;
 	/**
 	 * Launch the application.
 	 */
@@ -343,10 +345,30 @@ public class TelaAdministrador extends JFrame {
 		permiFunc.setBounds(23, 301, 196, 24);
 		panel_1_1_1.add(permiFunc);
 		
-		JLabel lblNewLabel_2_2_3_2 = new JLabel("Informe o Permissão");
+		JLabel lblNewLabel_2_2_3_2 = new JLabel("Informe a Permissão");
 		lblNewLabel_2_2_3_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel_2_2_3_2.setBounds(23, 277, 124, 22);
 		panel_1_1_1.add(lblNewLabel_2_2_3_2);
+		
+		usuarioFunc = new JTextField();
+		usuarioFunc.setColumns(10);
+		usuarioFunc.setBounds(629, 51, 203, 22);
+		panel_1_1_1.add(usuarioFunc);
+		
+		senhaFunc = new JTextField();
+		senhaFunc.setColumns(10);
+		senhaFunc.setBounds(629, 124, 203, 22);
+		panel_1_1_1.add(senhaFunc);
+		
+		JLabel lblNewLabel_2_2_1_1_1_1_2 = new JLabel("Informe o Usuário");
+		lblNewLabel_2_2_1_1_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_2_2_1_1_1_1_2.setBounds(629, 27, 124, 22);
+		panel_1_1_1.add(lblNewLabel_2_2_1_1_1_1_2);
+		
+		JLabel lblNewLabel_2_2_1_1_1_1_3 = new JLabel("Informe a Senha");
+		lblNewLabel_2_2_1_1_1_1_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_2_2_1_1_1_1_3.setBounds(629, 100, 124, 22);
+		panel_1_1_1.add(lblNewLabel_2_2_1_1_1_1_3);
 		
 		JPanel lista_prioridade = new JPanel();
 		tabbedPane.addTab("New tab", null, lista_prioridade, null);
@@ -619,6 +641,14 @@ public class TelaAdministrador extends JFrame {
 	
 	public JComboBox getpermiFunc() {
 		return permiFunc;
+	}
+	
+	public JTextField getUsuarioFunc() {
+		return usuarioFunc;
+	}
+	
+	public JTextField getSenhaFunc() {
+		return senhaFunc;
 	}
 	
 	public void addLinha() {
