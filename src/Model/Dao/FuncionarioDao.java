@@ -12,7 +12,7 @@ public class FuncionarioDao {
 	public void salvar(Funcionario funcionario) {
 		Conexao conexao = new Conexao();
         String sql = "INSERT INTO " +
-                "funcionario (nomeFun, cpf, telefone, email, cargo, permissao)" + "VALUES (?,?,?,?,?,?)";
+                "Funcionario (nomeFun, cpf, telefone, email, cargo, permissao)" + "VALUES (?,?,?,?,?,?)";
         
         try {
         	PreparedStatement stmt = conexao.getConn().prepareStatement(sql);
@@ -72,7 +72,7 @@ public class FuncionarioDao {
     	Funcionario funcionario = new Funcionario();
     	
 		try {
-			stmt = conexao.getConn().prepareStatement("SELECT func.idFuncionario FROM funcionario func ORDER BY func.idFuncionario DESC LIMIT 1;");
+			stmt = conexao.getConn().prepareStatement("SELECT func.idFuncionario FROM Funcionario func ORDER BY func.idFuncionario DESC LIMIT 1;");
 		
 	    	ResultSet rs = stmt.executeQuery();
 	    	rs.next();

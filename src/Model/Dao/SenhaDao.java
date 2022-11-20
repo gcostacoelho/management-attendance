@@ -11,7 +11,7 @@ public class SenhaDao {
 	public void salvar(Senha senha) {
 		Conexao conexao = new Conexao();
         String sql = "INSERT INTO " 
-		+ "senha (numeroSen, dataSen, horaSen)" 
+		+ "Senha (numeroSen, dataSen, horaSen)" 
         + "VALUES (?, ?)";
         
         try {
@@ -31,9 +31,9 @@ public class SenhaDao {
 	public Senha consultaUltimaSenha() {
 		Conexao conexao = new Conexao();
 		PreparedStatement stmt;
-        String sql = "select sn.numeroSen, sn.dataSen, sn.horaSen, pr.nomePri, sr.sigla from senha sn \r\n"
-        		+ "inner join prioridade pr on sn.Prioridade_idPrioridade = pr.idPrioridade\r\n"
-        		+ "inner join servico sr on pr.Servico_idServico = sr.idServico;";
+        String sql = "select sn.numeroSen, sn.dataSen, sn.horaSen, pr.nomePri, sr.sigla from Senha sn \r\n"
+        		+ "inner join Prioridade pr on sn.Prioridade_idPrioridade = pr.idPrioridade\r\n"
+        		+ "inner join Servico sr on pr.Servico_idServico = sr.idServico;";
         
         try {
         	stmt = conexao.getConn().prepareStatement(sql);
@@ -44,7 +44,7 @@ public class SenhaDao {
         	
         	stmt.execute();
             stmt.close();
-            retrun senha;
+            return senha;
         
         } catch (SQLException e) {
             e.printStackTrace();

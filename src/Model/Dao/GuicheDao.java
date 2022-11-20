@@ -9,7 +9,7 @@ public class GuicheDao {
 	public void salvar(Guiche guiche) {
 		Conexao conexao = new Conexao();
         String sql = "INSERT INTO " +
-                "guiche (numeroGui, descricaoGui)" + "VALUES (?, ?)";
+                "Guiche (numeroGui, descricaoGui)" + "VALUES (?, ?)";
         
         try {
         	PreparedStatement stmt = conexao.getConn().prepareStatement(sql);

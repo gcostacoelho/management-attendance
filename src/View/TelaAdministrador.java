@@ -27,6 +27,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Controller.ControladorFuncionario;
+import Controller.ControladorManterServico;
 import Model.Entity.Funcionario;
 
 import javax.swing.AbstractListModel;
@@ -37,14 +38,16 @@ import javax.swing.JScrollBar;
 public class TelaAdministrador extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField siglaServ;
+	private JTextField nomeServ;
+	private JTextField descServ;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	
+	/*--------------*/
 	private JTextField nomeFunc;
 	private JTextField cpfFunc;
 	private JTextField cargoFunc;
@@ -53,6 +56,10 @@ public class TelaAdministrador extends JFrame {
 	private JComboBox permiFunc;
 	private JTextField usuarioFunc;
 	private JTextField senhaFunc;
+	
+	/*--------------*/
+	private JComboBox statusServ;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -175,28 +182,35 @@ public class TelaAdministrador extends JFrame {
 		cadastro_servico.add(panel_1);
 		panel_1.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(22, 48, 196, 22);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		siglaServ = new JTextField();
+		siglaServ.setBounds(22, 48, 196, 22);
+		panel_1.add(siglaServ);
+		siglaServ.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(267, 48, 534, 22);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		nomeServ = new JTextField();
+		nomeServ.setBounds(267, 48, 534, 22);
+		panel_1.add(nomeServ);
+		nomeServ.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(22, 118, 779, 172);
-		panel_1.add(textField_2);
+		descServ = new JTextField();
+		descServ.setColumns(10);
+		descServ.setBounds(22, 118, 779, 172);
+		panel_1.add(descServ);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(22, 356, 196, 24);
-		panel_1.add(comboBox);
+		statusServ = new JComboBox();
+		statusServ.setModel(new DefaultComboBoxModel(new String[] {"Ativo", "Inativo"}));
+		statusServ.setBounds(22, 356, 196, 24);
+		panel_1.add(statusServ);
 		
 		JButton btnNewButton = new JButton("Cadastrar Serviço");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ControladorManterServico controller = new ControladorManterServico();
+				controller.executa(TelaAdministrador.this);
+				JOptionPane.showMessageDialog(null, nomeServ.getText() + " Cadastrado com sucesso!");
+				siglaServ.setText("");
+				nomeServ.setText("");
+				descServ.setText("");
 			}
 		});
 		btnNewButton.setBounds(633, 468, 168, 25);
@@ -520,7 +534,7 @@ public class TelaAdministrador extends JFrame {
 		btnListUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedComponent(lista_funcionario);
-				addLinha();
+				addLinhaFunc();
 			}
 		});
 		btnListUser.setBounds(42, 204, 132, 21);
@@ -586,18 +600,25 @@ public class TelaAdministrador extends JFrame {
 	public JPanel getContentPane() {
 		return contentPane;
 	}
-
-	public JTextField getTextField() {
-		return textField;
+	
+	/*--------------Cadastrar servicos--------------*/
+	public JTextField getSiglaServ() {
+		return siglaServ;
 	}
 
-	public JTextField getTextField_1() {
-		return textField_1;
+	public JTextField getNomeServ() {
+		return nomeServ;
 	}
 
-	public JTextField getTextField_2() {
-		return textField_2;
+	public JTextField getDescServ() {
+		return descServ;
 	}
+	
+	public JComboBox getStatusServ() {
+		return statusServ;
+	}
+	
+	/*---------------------------------------------------*/
 
 	public JTable getTable() {
 		return table;
@@ -618,6 +639,8 @@ public class TelaAdministrador extends JFrame {
 	public JTextField getTextField_5() {
 		return textField_5;
 	}
+	
+	/*--------------Cadastrar funcionario--------------*/
 
 	public JTextField getNomeFunc() {
 		return nomeFunc;
@@ -651,7 +674,7 @@ public class TelaAdministrador extends JFrame {
 		return senhaFunc;
 	}
 	
-	public void addLinha() {
+	public void addLinhaFunc() {
 		DefaultTableModel model =  (DefaultTableModel)table.getModel();
 		ControladorFuncionario controle = new ControladorFuncionario();
 		ArrayList<Funcionario> funcionarios = controle.consultar();

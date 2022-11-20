@@ -9,7 +9,7 @@ public class ServicoDao {
 	public void salvar(Servico servico) {
 		Conexao conexao = new Conexao();
         String sql = "INSERT INTO " 
-		+ "servico (sigla, nome, desc, status)" 
+		+ "Servico (sigla, nomeSer, descricaoSer, statusSer)" 
         + "VALUES (?, ?, ?, ?)";
         
         try {

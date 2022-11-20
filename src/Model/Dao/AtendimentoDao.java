@@ -14,7 +14,7 @@ public class AtendimentoDao {
         		+ "VALUES (?,?,?,?,?,?)";
         */
         String sql = "INSERT INTO " 
-        + "atendimento (statusAte, dataAte, horaAte, nota)"
+        + "Atendimento (statusAte, dataAte, horaAte, nota)"
         + "VALUES (?,?,?,?)";
         try {
         	PreparedStatement stmt = conexao.getConn().prepareStatement(sql);
