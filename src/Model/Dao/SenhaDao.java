@@ -27,7 +27,7 @@ public class SenhaDao {
             e.printStackTrace();
         } 
 	}
-	
+	/*
 	public Senha consultaUltimaSenha() {
 		Conexao conexao = new Conexao();
 		PreparedStatement stmt;
@@ -44,10 +44,11 @@ public class SenhaDao {
         	
         	stmt.execute();
             stmt.close();
-            retrun senha;
+            return senha;
         
         } catch (SQLException e) {
             e.printStackTrace();
         } 
 	}
+	*/
 }

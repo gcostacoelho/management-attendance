@@ -3,7 +3,9 @@ public class Prioridade {
     private String nomePri, descricaoPri;
     private int peso;
     private boolean statusPri;
-        
+     
+    public Prioridade() {}
+    
     public String getNomePri() {
         return nomePri;
     }
@@ -33,13 +35,6 @@ public class Prioridade {
     }
 
     public void setStatusPri(boolean statusPri) {
-        this.statusPri = statusPri;
-    }
-
-    public Prioridade(String nomePri, String descricaoPri, int peso, boolean statusPri) {
-        this.nomePri = nomePri;
-        this.descricaoPri = descricaoPri;
-        this.peso = peso;
         this.statusPri = statusPri;
     }
     
