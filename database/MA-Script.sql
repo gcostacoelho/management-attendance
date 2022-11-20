@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `ma`.`Servico` (
   `idServico` INT NOT NULL AUTO_INCREMENT,
   `sigla` VARCHAR(5) NOT NULL,
   `nomeSer` VARCHAR(45) NOT NULL,
-  `descricaoSer` VARCHAR(45) NULL,
+  `descricaoSer` VARCHAR(80) NULL,
   `statusSer` TINYINT NULL,
   PRIMARY KEY (`idServico`))
 ENGINE = InnoDB;
@@ -91,7 +91,12 @@ CREATE TABLE IF NOT EXISTS `ma`.`Prioridade` (
   `descricaoPri` VARCHAR(45) NULL,
   `peso` INT NOT NULL,
   `statusPri` TINYINT NULL,
-  PRIMARY KEY (`idPrioridade`))
+  `Servico_idServico` INT NOT NULL,
+  PRIMARY KEY (`idPrioridade`),
+  FOREIGN KEY (`Servico_idServico`)
+    REFERENCES `ma`.`Servico` (`idServico`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -173,6 +178,12 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 use ma;
 
+insert into servico (sigla, nomeSer, descricaoSer, statusSer) values("ATP", "Atendimento Preferencial", "Serviço com prioridade destinado aos idosos, deficientes, etc...", 1);
+
+insert into prioridade (nomePri, descricaoPri, peso, statusPri, Servico_idServico) values ("Preferencial", "Preferencial", 1, 1, 1);
+
+insert into senha (numeroSen, dataSen, horaSen, Prioridade_idPrioridade) values (1, curdate(), current_time(), 1);
+
 insert into guiche (numeroGui, descricaoGui) values("AD1", "Guiche Administrador");
 
 insert into funcionario (nomeFun, cpf, telefone, email, cargo, permissao, Guiche_idGuiche) 
@@ -180,13 +191,13 @@ values ("Administrador", "21020312007", "94512355", "admin@gmail.com", "Administ
 
 insert into usuario (usuario, senha, Funcionario_idFuncionario) values ("admin", "admin", 1);
 
-#insert into usuario (usuario, senha, Funcionario_idFuncionario) values ("gustavo", "123", 2);
-
-select * from funcionario;
-
-#delete from funcionario; 
-
-#delete from guiche;
 select * from guiche;
+select * from servico;
+select * from funcionario;
+select * from prioridade;
+select * from usuario;
+select * from senha;
 
-#delete from usuario;
+select sn.numeroSen, sn.dataSen, sn.horaSen, pr.nomePri, sr.sigla from senha sn 
+inner join prioridade pr on sn.Prioridade_idPrioridade = pr.idPrioridade
+inner join servico sr on pr.Servico_idServico = sr.idServico;

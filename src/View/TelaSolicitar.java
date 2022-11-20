@@ -43,25 +43,25 @@ public class TelaSolicitar extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnNewButton.setBounds(10, 111, 512, 98);
-		contentPane.add(btnNewButton);
+		JButton btnGeral = new JButton("Atendimento Geral");
+		btnGeral.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnGeral.setBounds(10, 111, 512, 98);
+		contentPane.add(btnGeral);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnNewButton_1.setBounds(10, 367, 512, 98);
-		contentPane.add(btnNewButton_1);
+		JButton btnAgendada = new JButton("Consulta Agendada");
+		btnAgendada.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnAgendada.setBounds(10, 367, 512, 98);
+		contentPane.add(btnAgendada);
 		
-		JButton btnNewButton_1_1 = new JButton("Atendimento Preferencial");
-		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnNewButton_1_1.setBounds(566, 111, 512, 98);
-		contentPane.add(btnNewButton_1_1);
+		JButton btnPreferencial = new JButton("Atendimento Preferencial");
+		btnPreferencial.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnPreferencial.setBounds(566, 111, 512, 98);
+		contentPane.add(btnPreferencial);
 		
-		JButton btnNewButton_1_2 = new JButton("New button");
-		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnNewButton_1_2.setBounds(566, 367, 512, 98);
-		contentPane.add(btnNewButton_1_2);
+		JButton btnRetirada = new JButton("Retirada de Exames");
+		btnRetirada.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnRetirada.setBounds(566, 367, 512, 98);
+		contentPane.add(btnRetirada);
 		
 		JLabel lblNewLabel = new JLabel("Selecione o Serviço desejado");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 27));
