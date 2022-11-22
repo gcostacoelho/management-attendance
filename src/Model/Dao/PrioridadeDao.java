@@ -9,7 +9,7 @@ public class PrioridadeDao {
 	public void salvar(Prioridade prioridade) {
 		Conexao conexao = new Conexao();
         String sql = "INSERT INTO " 
-		+ "prioridade (nomePri, descricaoPri, peso, statusPri)" 
+		+ "Prioridade (nomePri, descricaoPri, peso, statusPri)" 
         + "VALUES (?, ?, ?, ?)";
         
         try {

@@ -27,24 +27,30 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Controller.ControladorFuncionario;
+import Controller.ControladorManterServico;
 import Model.Entity.Funcionario;
+import Model.Entity.Servico;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollBar;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaAdministrador extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField siglaServ;
+	private JTextField nomeServ;
+	private JTextField descServ;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	
+	/*--------------*/
 	private JTextField nomeFunc;
 	private JTextField cpfFunc;
 	private JTextField cargoFunc;
@@ -53,6 +59,10 @@ public class TelaAdministrador extends JFrame {
 	private JComboBox permiFunc;
 	private JTextField usuarioFunc;
 	private JTextField senhaFunc;
+	
+	/*--------------*/
+	private JComboBox statusServ;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -85,6 +95,73 @@ public class TelaAdministrador extends JFrame {
 		tabbedPane.setBounds(204, -24, 930, 650);
 		contentPane.add(tabbedPane);
 		
+		JPanel lista_funcionario = new JPanel();
+		tabbedPane.addTab("New tab", null, lista_funcionario, null);
+		lista_funcionario.setLayout(null);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("Lista de Funcionário");
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel_1_2.setBounds(10, 29, 189, 24);
+		lista_funcionario.add(lblNewLabel_1_2);
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Irineu", "487794949", null},
+			},
+			new String[] {
+				"Nome", "CPF", "Cargo"
+			}
+		));
+		table.setBounds(10, 168, 905, 432);
+		lista_funcionario.add(table);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Excluir", "Atualizar"}));
+		comboBox_1.setBounds(59, 86, 111, 21);
+		lista_funcionario.add(comboBox_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Ação:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_2.setBounds(20, 89, 45, 13);
+		lista_funcionario.add(lblNewLabel_2);
+		
+		JPanel desc_bar_1 = new JPanel();
+		desc_bar_1.setLayout(null);
+		desc_bar_1.setBackground(new Color(154, 153, 150));
+		desc_bar_1.setBounds(10, 119, 908, 41);
+		lista_funcionario.add(desc_bar_1);
+		
+		JTextPane txtpnNome_1 = new JTextPane();
+		txtpnNome_1.setText("Nome");
+		txtpnNome_1.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnNome_1.setEditable(false);
+		txtpnNome_1.setBackground(new Color(154, 153, 150));
+		txtpnNome_1.setBounds(17, 10, 42, 21);
+		desc_bar_1.add(txtpnNome_1);
+		
+		JTextPane txtpnCpf = new JTextPane();
+		txtpnCpf.setText("CPF");
+		txtpnCpf.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnCpf.setEditable(false);
+		txtpnCpf.setBackground(new Color(154, 153, 150));
+		txtpnCpf.setBounds(310, 10, 91, 21);
+		desc_bar_1.add(txtpnCpf);
+		
+		JTextPane txtpnCargo = new JTextPane();
+		txtpnCargo.setText("Cargo");
+		txtpnCargo.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnCargo.setEditable(false);
+		txtpnCargo.setBackground(new Color(154, 153, 150));
+		txtpnCargo.setBounds(607, 10, 64, 21);
+		desc_bar_1.add(txtpnCargo);
+		
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("New tab", null, panel, null);
 		panel.setLayout(null);
@@ -100,20 +177,16 @@ public class TelaAdministrador extends JFrame {
 		
 		JPanel desc_bar = new JPanel();
 		desc_bar.setBackground(new Color(154, 153, 150));
-		desc_bar.setBounds(12, 64, 891, 39);
+		desc_bar.setBounds(12, 92, 891, 39);
 		lista_servicos.add(desc_bar);
 		desc_bar.setLayout(null);
-		
-		JCheckBox checkBox = new JCheckBox("");
-		checkBox.setBounds(8, 8, 21, 23);
-		desc_bar.add(checkBox);
 		
 		JTextPane txtpnSigla = new JTextPane();
 		txtpnSigla.setFont(new Font("Dialog", Font.BOLD, 12));
 		txtpnSigla.setBackground(new Color(154, 153, 150));
 		txtpnSigla.setEditable(false);
 		txtpnSigla.setText("Sigla");
-		txtpnSigla.setBounds(37, 8, 42, 21);
+		txtpnSigla.setBounds(12, 8, 42, 21);
 		desc_bar.add(txtpnSigla);
 		
 		JTextPane txtpnNome = new JTextPane();
@@ -121,7 +194,7 @@ public class TelaAdministrador extends JFrame {
 		txtpnNome.setFont(new Font("Dialog", Font.BOLD, 12));
 		txtpnNome.setEditable(false);
 		txtpnNome.setBackground(new Color(154, 153, 150));
-		txtpnNome.setBounds(91, 8, 42, 21);
+		txtpnNome.setBounds(223, 8, 42, 21);
 		desc_bar.add(txtpnNome);
 		
 		JTextPane txtpnDescrio = new JTextPane();
@@ -129,7 +202,7 @@ public class TelaAdministrador extends JFrame {
 		txtpnDescrio.setFont(new Font("Dialog", Font.BOLD, 12));
 		txtpnDescrio.setEditable(false);
 		txtpnDescrio.setBackground(new Color(154, 153, 150));
-		txtpnDescrio.setBounds(303, 8, 91, 21);
+		txtpnDescrio.setBounds(449, 8, 91, 21);
 		desc_bar.add(txtpnDescrio);
 		
 		JTextPane txtpnStatus = new JTextPane();
@@ -137,27 +210,20 @@ public class TelaAdministrador extends JFrame {
 		txtpnStatus.setFont(new Font("Dialog", Font.BOLD, 12));
 		txtpnStatus.setEditable(false);
 		txtpnStatus.setBackground(new Color(154, 153, 150));
-		txtpnStatus.setBounds(552, 8, 64, 21);
+		txtpnStatus.setBounds(672, 8, 64, 21);
 		desc_bar.add(txtpnStatus);
-		
-		JTextPane txtpnAes = new JTextPane();
-		txtpnAes.setText("Ações");
-		txtpnAes.setFont(new Font("Dialog", Font.BOLD, 12));
-		txtpnAes.setEditable(false);
-		txtpnAes.setBackground(new Color(154, 153, 150));
-		txtpnAes.setBounds(799, 8, 49, 21);
-		desc_bar.add(txtpnAes);
 		
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
+				{"bdbd", "bdbd", "bdbdbb", null},
 			},
 			new String[] {
 				"Sigla", "Nome", "Descri\u00E7\u00E3o", "Status"
 			}
 		));
 		table_1.getColumnModel().getColumn(0).setMinWidth(16);
-		table_1.setBounds(12, 135, 891, 453);
+		table_1.setBounds(12, 143, 891, 445);
 		lista_servicos.add(table_1);
 		
 		JLabel lblNewLabel_1_2_3 = new JLabel("Lista de Serviços");
@@ -165,9 +231,28 @@ public class TelaAdministrador extends JFrame {
 		lblNewLabel_1_2_3.setBounds(10, 20, 175, 24);
 		lista_servicos.add(lblNewLabel_1_2_3);
 		
+		JLabel lblNewLabel_2_3 = new JLabel("Ação:");
+		lblNewLabel_2_3.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblNewLabel_2_3.setBounds(12, 59, 45, 13);
+		lista_servicos.add(lblNewLabel_2_3);
+		
+		JComboBox comboBox_1_2 = new JComboBox();
+		comboBox_1_2.setModel(new DefaultComboBoxModel(new String[] {"Excluir", "Atualizar"}));
+		comboBox_1_2.setBounds(51, 56, 111, 21);
+		lista_servicos.add(comboBox_1_2);
+		
 		JPanel cadastro_servico = new JPanel();
 		tabbedPane.addTab("New tab", null, cadastro_servico, null);
 		cadastro_servico.setLayout(null);
+		
+		JButton btnNewButton_1_2 = new JButton("Cadastrar Serviços");
+		btnNewButton_1_2.setBounds(730, 53, 172, 25);
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedComponent(cadastro_servico);
+			}
+		});
+		lista_servicos.add(btnNewButton_1_2);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
@@ -175,28 +260,35 @@ public class TelaAdministrador extends JFrame {
 		cadastro_servico.add(panel_1);
 		panel_1.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(22, 48, 196, 22);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		siglaServ = new JTextField();
+		siglaServ.setBounds(22, 48, 196, 22);
+		panel_1.add(siglaServ);
+		siglaServ.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(267, 48, 534, 22);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		nomeServ = new JTextField();
+		nomeServ.setBounds(267, 48, 534, 22);
+		panel_1.add(nomeServ);
+		nomeServ.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(22, 118, 779, 172);
-		panel_1.add(textField_2);
+		descServ = new JTextField();
+		descServ.setColumns(10);
+		descServ.setBounds(22, 118, 779, 172);
+		panel_1.add(descServ);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(22, 356, 196, 24);
-		panel_1.add(comboBox);
+		statusServ = new JComboBox();
+		statusServ.setModel(new DefaultComboBoxModel(new String[] {"Ativo", "Inativo"}));
+		statusServ.setBounds(22, 356, 196, 24);
+		panel_1.add(statusServ);
 		
 		JButton btnNewButton = new JButton("Cadastrar Serviço");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ControladorManterServico controller = new ControladorManterServico();
+				controller.executa(TelaAdministrador.this);
+				JOptionPane.showMessageDialog(null, nomeServ.getText() + " Cadastrado com sucesso!");
+				siglaServ.setText("");
+				nomeServ.setText("");
+				descServ.setText("");
 			}
 		});
 		btnNewButton.setBounds(633, 468, 168, 25);
@@ -227,37 +319,6 @@ public class TelaAdministrador extends JFrame {
 		lblNewLabel_1_2_2.setBounds(10, 23, 175, 24);
 		cadastro_servico.add(lblNewLabel_1_2_2);
 		
-		JPanel lista_funcionario = new JPanel();
-		tabbedPane.addTab("New tab", null, lista_funcionario, null);
-		lista_funcionario.setLayout(null);
-		
-		JLabel lblNewLabel_1_2 = new JLabel("Lista de Funcionário");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_1_2.setBounds(10, 29, 189, 24);
-		lista_funcionario.add(lblNewLabel_1_2);
-		
-		table = new JTable();
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nome", "CPF", "Crago"
-			}
-		));
-		table.setBounds(10, 143, 905, 457);
-		lista_funcionario.add(table);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Excluir", "Atualizar"}));
-		comboBox_1.setBounds(59, 86, 111, 21);
-		lista_funcionario.add(comboBox_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Ação:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(20, 89, 45, 13);
-		lista_funcionario.add(lblNewLabel_2);
-		
 		JPanel cadastro_funcionario = new JPanel();
 		tabbedPane.addTab("New tab", null, cadastro_funcionario, null);
 		cadastro_funcionario.setLayout(null);
@@ -272,6 +333,15 @@ public class TelaAdministrador extends JFrame {
 		panel_1_1_1.setBackground(Color.WHITE);
 		panel_1_1_1.setBounds(20, 81, 893, 429);
 		cadastro_funcionario.add(panel_1_1_1);
+		
+		JButton btnNewButton_1 = new JButton("Cadastrar Funcionário");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedComponent(cadastro_funcionario);
+			}
+		});
+		btnNewButton_1.setBounds(743, 84, 172, 25);
+		lista_funcionario.add(btnNewButton_1);
 		
 		nomeFunc = new JTextField();
 		nomeFunc.setColumns(10);
@@ -389,20 +459,57 @@ public class TelaAdministrador extends JFrame {
 		comboBox_1_1.setBounds(59, 67, 111, 21);
 		lista_prioridade.add(comboBox_1_1);
 		
-		JButton btnNewButton_1_1 = new JButton("Cadastrar Prioridade");
-		btnNewButton_1_1.setBounds(744, 65, 141, 25);
-		lista_prioridade.add(btnNewButton_1_1);
+
 		
 		table_2 = new JTable();
 		table_2.setModel(new DefaultTableModel(
 			new Object[][] {
+				{"ttet", "tete", "tetet", null},
 			},
 			new String[] {
 				"Nome", "Descri\u00E7\u00E3o", "Peso", "Status"
 			}
 		));
-		table_2.setBounds(10, 109, 905, 457);
+		table_2.setBounds(10, 143, 905, 423);
 		lista_prioridade.add(table_2);
+		
+		JPanel desc_bar_1_1 = new JPanel();
+		desc_bar_1_1.setLayout(null);
+		desc_bar_1_1.setBackground(new Color(154, 153, 150));
+		desc_bar_1_1.setBounds(10, 95, 908, 41);
+		lista_prioridade.add(desc_bar_1_1);
+		
+		JTextPane txtpnNome_1_1 = new JTextPane();
+		txtpnNome_1_1.setText("Nome");
+		txtpnNome_1_1.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnNome_1_1.setEditable(false);
+		txtpnNome_1_1.setBackground(new Color(154, 153, 150));
+		txtpnNome_1_1.setBounds(17, 10, 42, 21);
+		desc_bar_1_1.add(txtpnNome_1_1);
+		
+		JTextPane txtpnDescrio_1 = new JTextPane();
+		txtpnDescrio_1.setText("Descrição");
+		txtpnDescrio_1.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnDescrio_1.setEditable(false);
+		txtpnDescrio_1.setBackground(new Color(154, 153, 150));
+		txtpnDescrio_1.setBounds(226, 10, 91, 21);
+		desc_bar_1_1.add(txtpnDescrio_1);
+		
+		JTextPane txtpnPeso = new JTextPane();
+		txtpnPeso.setText("Peso");
+		txtpnPeso.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnPeso.setEditable(false);
+		txtpnPeso.setBackground(new Color(154, 153, 150));
+		txtpnPeso.setBounds(456, 10, 64, 21);
+		desc_bar_1_1.add(txtpnPeso);
+		
+		JTextPane txtpnStatus_1 = new JTextPane();
+		txtpnStatus_1.setText("Status");
+		txtpnStatus_1.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtpnStatus_1.setEditable(false);
+		txtpnStatus_1.setBackground(new Color(154, 153, 150));
+		txtpnStatus_1.setBounds(682, 10, 64, 21);
+		desc_bar_1_1.add(txtpnStatus_1);
 		
 		JPanel cadastro_prioridade = new JPanel();
 		tabbedPane.addTab("New tab", null, cadastro_prioridade, null);
@@ -413,6 +520,15 @@ public class TelaAdministrador extends JFrame {
 		panel_1_1.setBackground(Color.WHITE);
 		panel_1_1.setBounds(20, 76, 893, 503);
 		cadastro_prioridade.add(panel_1_1);
+		
+		JButton btnNewButton_1_1 = new JButton("Cadastrar Prioridade");
+		btnNewButton_1_1.setBounds(744, 65, 141, 25);
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedComponent(cadastro_prioridade);
+			}
+		});
+		lista_prioridade.add(btnNewButton_1_1);
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
@@ -428,7 +544,7 @@ public class TelaAdministrador extends JFrame {
 		comboBox_2.setBounds(22, 356, 196, 24);
 		panel_1_1.add(comboBox_2);
 		
-		JButton btnNewButton_2 = new JButton("Cadastrar Serviço");
+		JButton btnNewButton_2 = new JButton("Cadastrar Prioridade");
 		btnNewButton_2.setBounds(633, 468, 168, 25);
 		panel_1_1.add(btnNewButton_2);
 		
@@ -490,6 +606,7 @@ public class TelaAdministrador extends JFrame {
 		btnListServ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedComponent(lista_servicos);
+				addLinhaServ();
 			}
 		});
 		btnListServ.setBounds(42, 87, 132, 21);
@@ -520,7 +637,7 @@ public class TelaAdministrador extends JFrame {
 		btnListUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedComponent(lista_funcionario);
-				addLinha();
+				addLinhaFunc();
 			}
 		});
 		btnListUser.setBounds(42, 204, 132, 21);
@@ -534,15 +651,6 @@ public class TelaAdministrador extends JFrame {
 		});
 		btnCadUser.setBounds(42, 235, 132, 21);
 		panel_3.add(btnCadUser);
-		
-		JButton btnNewButton_1 = new JButton("Cadastrar Funcionário");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedComponent(cadastro_funcionario);
-			}
-		});
-		btnNewButton_1.setBounds(743, 84, 172, 25);
-		lista_funcionario.add(btnNewButton_1);
 		
 		JButton btnCadPrio = new JButton("Cadastrar");
 		btnCadPrio.addActionListener(new ActionListener() {
@@ -586,18 +694,44 @@ public class TelaAdministrador extends JFrame {
 	public JPanel getContentPane() {
 		return contentPane;
 	}
-
-	public JTextField getTextField() {
-		return textField;
+	
+	/*--------------Cadastrar servicos--------------*/
+	public JTextField getSiglaServ() {
+		return siglaServ;
 	}
 
-	public JTextField getTextField_1() {
-		return textField_1;
+	public JTextField getNomeServ() {
+		return nomeServ;
 	}
 
-	public JTextField getTextField_2() {
-		return textField_2;
+	public JTextField getDescServ() {
+		return descServ;
 	}
+	
+	public JComboBox getStatusServ() {
+		return statusServ;
+	}
+
+	public void addLinhaServ() {
+		DefaultTableModel model =  (DefaultTableModel)table_1.getModel();
+		ControladorManterServico controle = new ControladorManterServico();
+		ArrayList<Servico> servico = controle.consultar();
+		
+		model.setNumRows(0);
+		for(int i=0; i < servico.size() ; i++) {
+			model.addRow((
+				new String[] {
+					servico.get(i).getSigla(),
+					servico.get(i).getNome(), 
+					servico.get(i).getDesc(),
+					servico.get(i).verificaStatus()
+					
+				}
+			));
+		}
+	}
+	
+	/*---------------------------------------------------*/
 
 	public JTable getTable() {
 		return table;
@@ -618,6 +752,8 @@ public class TelaAdministrador extends JFrame {
 	public JTextField getTextField_5() {
 		return textField_5;
 	}
+	
+	/*--------------Cadastrar funcionario--------------*/
 
 	public JTextField getNomeFunc() {
 		return nomeFunc;
@@ -651,13 +787,19 @@ public class TelaAdministrador extends JFrame {
 		return senhaFunc;
 	}
 	
-	public void addLinha() {
+	public void addLinhaFunc() {
 		DefaultTableModel model =  (DefaultTableModel)table.getModel();
 		ControladorFuncionario controle = new ControladorFuncionario();
 		ArrayList<Funcionario> funcionarios = controle.consultar();
 		model.setNumRows(0);
 		for(int i=0; i < funcionarios.size() ; i++) {
-			model.addRow((new String[] {funcionarios.get(i).getNomeFun(), funcionarios.get(i).getCpf(), funcionarios.get(i).getCargo()}));
+			model.addRow((
+				new String[] {
+					funcionarios.get(i).getNomeFun(), 
+					funcionarios.get(i).getCpf(), 
+					funcionarios.get(i).getCargo()
+				}
+			));
 		}
 	}
 }

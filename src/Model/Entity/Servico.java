@@ -3,6 +3,8 @@ public class Servico {
     private String sigla, nome, desc;
     private boolean status;
 
+    public Servico() {}
+    
     public String getSigla() { return sigla; }
     
     public void setSigla(String sigla) { this.sigla = sigla; }
@@ -18,14 +20,13 @@ public class Servico {
     public boolean isStatus() { return status; }
 
     public void setStatus(boolean status) { this.status = status; }
-
-    public Servico(String sigla, String nome, String desc, boolean status) {
-        this.sigla = sigla;
-        this.nome = nome;
-        this.desc = desc;
-        this.status = status;
-    }
-
     
+    public String verificaStatus() {
+    	if (this.status == false) {
+    		return "Inativo";
+    	}else {
+    		return "Ativo";
+    	}
+    }
     
 }

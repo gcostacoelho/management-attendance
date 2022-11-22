@@ -14,8 +14,8 @@ public class LoginDao {
 		Conexao conexao = new Conexao();
 		PreparedStatement stmt;
 		ArrayList<Login> respLogin;
-		String sql = "select us.usuario, us.senha, fun.permissao from usuario us "
-				+ "inner join funcionario fun on us.Funcionario_idFuncionario = fun.idFuncionario "
+		String sql = "select us.usuario, us.senha, fun.permissao from Usuario us "
+				+ "inner join Funcionario fun on us.Funcionario_idFuncionario = fun.idFuncionario "
 				+ "where us.usuario = ? and us.senha = ?;";
 		
 		try {
