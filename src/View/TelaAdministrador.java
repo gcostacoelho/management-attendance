@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import Controller.ControladorFuncionario;
 import Controller.ControladorManterServico;
 import Model.Entity.Funcionario;
+import Model.Entity.Servico;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
@@ -130,15 +131,6 @@ public class TelaAdministrador extends JFrame {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel_2.setBounds(20, 89, 45, 13);
 		lista_funcionario.add(lblNewLabel_2);
-		
-		JButton btnNewButton_1 = new JButton("Cadastrar Funcionário");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				tabbedPane.setSelectedComponent(cadastro_funcionario);
-			}
-		});
-		btnNewButton_1.setBounds(743, 84, 172, 25);
-		lista_funcionario.add(btnNewButton_1);
 		
 		JPanel desc_bar_1 = new JPanel();
 		desc_bar_1.setLayout(null);
@@ -249,13 +241,18 @@ public class TelaAdministrador extends JFrame {
 		comboBox_1_2.setBounds(51, 56, 111, 21);
 		lista_servicos.add(comboBox_1_2);
 		
-		JButton btnNewButton_1_2 = new JButton("Cadastrar Serviços");
-		btnNewButton_1_2.setBounds(730, 53, 172, 25);
-		lista_servicos.add(btnNewButton_1_2);
-		
 		JPanel cadastro_servico = new JPanel();
 		tabbedPane.addTab("New tab", null, cadastro_servico, null);
 		cadastro_servico.setLayout(null);
+		
+		JButton btnNewButton_1_2 = new JButton("Cadastrar Serviços");
+		btnNewButton_1_2.setBounds(730, 53, 172, 25);
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedComponent(cadastro_servico);
+			}
+		});
+		lista_servicos.add(btnNewButton_1_2);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
@@ -336,6 +333,15 @@ public class TelaAdministrador extends JFrame {
 		panel_1_1_1.setBackground(Color.WHITE);
 		panel_1_1_1.setBounds(20, 81, 893, 429);
 		cadastro_funcionario.add(panel_1_1_1);
+		
+		JButton btnNewButton_1 = new JButton("Cadastrar Funcionário");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedComponent(cadastro_funcionario);
+			}
+		});
+		btnNewButton_1.setBounds(743, 84, 172, 25);
+		lista_funcionario.add(btnNewButton_1);
 		
 		nomeFunc = new JTextField();
 		nomeFunc.setColumns(10);
@@ -453,9 +459,7 @@ public class TelaAdministrador extends JFrame {
 		comboBox_1_1.setBounds(59, 67, 111, 21);
 		lista_prioridade.add(comboBox_1_1);
 		
-		JButton btnNewButton_1_1 = new JButton("Cadastrar Prioridade");
-		btnNewButton_1_1.setBounds(744, 65, 141, 25);
-		lista_prioridade.add(btnNewButton_1_1);
+
 		
 		table_2 = new JTable();
 		table_2.setModel(new DefaultTableModel(
@@ -517,6 +521,15 @@ public class TelaAdministrador extends JFrame {
 		panel_1_1.setBounds(20, 76, 893, 503);
 		cadastro_prioridade.add(panel_1_1);
 		
+		JButton btnNewButton_1_1 = new JButton("Cadastrar Prioridade");
+		btnNewButton_1_1.setBounds(744, 65, 141, 25);
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedComponent(cadastro_prioridade);
+			}
+		});
+		lista_prioridade.add(btnNewButton_1_1);
+		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
 		textField_4.setBounds(23, 50, 534, 22);
@@ -531,7 +544,7 @@ public class TelaAdministrador extends JFrame {
 		comboBox_2.setBounds(22, 356, 196, 24);
 		panel_1_1.add(comboBox_2);
 		
-		JButton btnNewButton_2 = new JButton("Cadastrar Serviço");
+		JButton btnNewButton_2 = new JButton("Cadastrar Prioridade");
 		btnNewButton_2.setBounds(633, 468, 168, 25);
 		panel_1_1.add(btnNewButton_2);
 		
@@ -593,6 +606,7 @@ public class TelaAdministrador extends JFrame {
 		btnListServ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedComponent(lista_servicos);
+				addLinhaServ();
 			}
 		});
 		btnListServ.setBounds(42, 87, 132, 21);
@@ -697,6 +711,25 @@ public class TelaAdministrador extends JFrame {
 	public JComboBox getStatusServ() {
 		return statusServ;
 	}
+
+	public void addLinhaServ() {
+		DefaultTableModel model =  (DefaultTableModel)table_1.getModel();
+		ControladorManterServico controle = new ControladorManterServico();
+		ArrayList<Servico> servico = controle.consultar();
+		
+		model.setNumRows(0);
+		for(int i=0; i < servico.size() ; i++) {
+			model.addRow((
+				new String[] {
+					servico.get(i).getSigla(),
+					servico.get(i).getNome(), 
+					servico.get(i).getDesc(),
+					servico.get(i).verificaStatus()
+					
+				}
+			));
+		}
+	}
 	
 	/*---------------------------------------------------*/
 
@@ -760,7 +793,13 @@ public class TelaAdministrador extends JFrame {
 		ArrayList<Funcionario> funcionarios = controle.consultar();
 		model.setNumRows(0);
 		for(int i=0; i < funcionarios.size() ; i++) {
-			model.addRow((new String[] {funcionarios.get(i).getNomeFun(), funcionarios.get(i).getCpf(), funcionarios.get(i).getCargo()}));
+			model.addRow((
+				new String[] {
+					funcionarios.get(i).getNomeFun(), 
+					funcionarios.get(i).getCpf(), 
+					funcionarios.get(i).getCargo()
+				}
+			));
 		}
 	}
 }

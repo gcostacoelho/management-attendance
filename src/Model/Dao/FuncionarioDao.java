@@ -60,7 +60,6 @@ public class FuncionarioDao {
 	    	return funcionarios;
 	    	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}

@@ -20,9 +20,13 @@ public class Servico {
     public boolean isStatus() { return status; }
 
     public void setStatus(boolean status) { this.status = status; }
-
     
-
-    
+    public String verificaStatus() {
+    	if (this.status == false) {
+    		return "Inativo";
+    	}else {
+    		return "Ativo";
+    	}
+    }
     
 }

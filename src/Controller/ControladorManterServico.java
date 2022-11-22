@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import Model.Dao.ServicoDao;
 import Model.Entity.Servico;
 import View.TelaAdministrador;
@@ -25,4 +27,9 @@ public class ControladorManterServico {
     	ServicoDao servicoDao = new ServicoDao();
     	servicoDao.salvar(servico);
     }
+
+	public ArrayList<Servico> consultar() {
+		ServicoDao servicoDao = new ServicoDao();
+		return servicoDao.consulta();
+	}
 }
