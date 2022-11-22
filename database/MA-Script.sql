@@ -162,7 +162,7 @@ USE `ma` ;
 -- -----------------------------------------------------
 -- Table `ma`.`guiche`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ma`.`guiche` (
+CREATE TABLE IF NOT EXISTS `ma`.`Guiche` (
   `idGuiche` INT(11) NOT NULL AUTO_INCREMENT,
   `numeroGui` VARCHAR(10) NOT NULL,
   `descricaoGui` VARCHAR(90) NULL DEFAULT NULL,
@@ -178,26 +178,27 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 use ma;
 
-insert into servico (sigla, nomeSer, descricaoSer, statusSer) values("ATP", "Atendimento Preferencial", "Serviço com prioridade destinado aos idosos, deficientes, etc...", 1);
+insert into Servico (sigla, nomeSer, descricaoSer, statusSer) values("ATP", "Atendimento Preferencial", "Serviço com prioridade destinado aos idosos, deficientes, etc...", 1);
 
-insert into prioridade (nomePri, descricaoPri, peso, statusPri, Servico_idServico) values ("Preferencial", "Preferencial", 1, 1, 1);
+insert into Prioridade (nomePri, descricaoPri, peso, statusPri, Servico_idServico) values ("Preferencial", "Preferencial", 1, 1, 1);
 
-insert into senha (numeroSen, dataSen, horaSen, Prioridade_idPrioridade) values (1, curdate(), current_time(), 1);
+insert into Senha (numeroSen, dataSen, horaSen, Prioridade_idPrioridade) values (1, curdate(), current_time(), 1);
 
-insert into guiche (numeroGui, descricaoGui) values("AD1", "Guiche Administrador");
+insert into Guiche (numeroGui, descricaoGui) values("AD1", "Guiche Administrador");
 
-insert into funcionario (nomeFun, cpf, telefone, email, cargo, permissao, Guiche_idGuiche) 
+insert into Funcionario (nomeFun, cpf, telefone, email, cargo, permissao, Guiche_idGuiche) 
 values ("Administrador", "21020312007", "94512355", "admin@gmail.com", "Administrador", 1, 1);
 
-insert into usuario (usuario, senha, Funcionario_idFuncionario) values ("admin", "admin", 1);
+insert into Usuario (usuario, senha, Funcionario_idFuncionario) values ("admin", "admin", 1);
 
-select * from guiche;
-select * from servico;
-select * from funcionario;
-select * from prioridade;
-select * from usuario;
-select * from senha;
+select * from Guiche;
+select * from Servico;
+select * from Funcionario;
+select * from Prioridade;
+select * from Usuario;
+select * from Senha;
 
-select sn.numeroSen, sn.dataSen, sn.horaSen, pr.nomePri, sr.sigla from senha sn 
-inner join prioridade pr on sn.Prioridade_idPrioridade = pr.idPrioridade
-inner join servico sr on pr.Servico_idServico = sr.idServico;
+select sn.numeroSen, sn.dataSen, sn.horaSen, pr.nomePri, sr.sigla from Senha sn 
+inner join Prioridade pr on sn.Prioridade_idPrioridade = pr.idPrioridade
+inner join Servico sr on pr.Servico_idServico = sr.idServico;
+
