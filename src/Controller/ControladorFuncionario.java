@@ -3,14 +3,11 @@ package Controller;
 import Model.Entity.Funcionario;
 import Model.Entity.Login;
 import Model.Entity.Usuario;
-
 import java.util.ArrayList;
-
 import Model.Dao.FuncionarioDao;
 import Model.Dao.LoginDao;
 import Model.Dao.UsuarioDao;
 import View.TelaAdministrador;
-import View.TelaCadastro;
 
 public class ControladorFuncionario {
 	

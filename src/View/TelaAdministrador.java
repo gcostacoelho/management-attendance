@@ -47,16 +47,16 @@ public class TelaAdministrador extends JFrame {
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	
-	/*--------------*/
+	private JTextField nomePri;
+	private JTextField descricaoPri;
 	private JTextField nomeFunc;
 	private JTextField cpfFunc;
 	private JTextField cargoFunc;
 	private JTextField emailFunc;
 	private JTextField telFunc;
 	private JComboBox permiFunc;
+	private JComboBox pesoPri;
+	private JComboBox statusPri;
 	private JTextField usuarioFunc;
 	private JTextField senhaFunc;
 	
@@ -530,23 +530,20 @@ public class TelaAdministrador extends JFrame {
 		});
 		lista_prioridade.add(btnNewButton_1_1);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(23, 50, 534, 22);
-		panel_1_1.add(textField_4);
+		nomePri = new JTextField();
+		nomePri.setColumns(10);
+		nomePri.setBounds(23, 50, 534, 22);
+		panel_1_1.add(nomePri);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(22, 118, 779, 172);
-		panel_1_1.add(textField_5);
+		descricaoPri = new JTextField();
+		descricaoPri.setColumns(10);
+		descricaoPri.setBounds(22, 118, 779, 172);
+		panel_1_1.add(descricaoPri);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(22, 356, 196, 24);
-		panel_1_1.add(comboBox_2);
-		
-		JButton btnNewButton_2 = new JButton("Cadastrar Prioridade");
-		btnNewButton_2.setBounds(633, 468, 168, 25);
-		panel_1_1.add(btnNewButton_2);
+		pesoPri = new JComboBox();
+		pesoPri.setModel(new DefaultComboBoxModel(new String[] {"Antendimento Geral", "Antendimento Preferencial"}));
+		pesoPri.setBounds(22, 356, 196, 24);
+		panel_1_1.add(pesoPri);
 		
 		JLabel lblNewLabel_2_2_1_1 = new JLabel("Informe o Nome");
 		lblNewLabel_2_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -568,9 +565,10 @@ public class TelaAdministrador extends JFrame {
 		lblNewLabel_2_2_3_1_1.setBounds(361, 332, 124, 22);
 		panel_1_1.add(lblNewLabel_2_2_3_1_1);
 		
-		JComboBox comboBox_2_1 = new JComboBox();
-		comboBox_2_1.setBounds(361, 356, 196, 24);
-		panel_1_1.add(comboBox_2_1);
+		statusPri = new JComboBox();
+		statusPri.setModel(new DefaultComboBoxModel(new String[] {"Ativo", "Inativo"}));
+		statusPri.setBounds(361, 356, 196, 24);
+		panel_1_1.add(statusPri);
 		
 		JLabel lblNewLabel_1_2_2_1 = new JLabel("Cadastro de Prioridade");
 		lblNewLabel_1_2_2_1.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -746,11 +744,11 @@ public class TelaAdministrador extends JFrame {
 	}
 
 	public JTextField getTextField_4() {
-		return textField_4;
+		return nomePri;
 	}
 
 	public JTextField getTextField_5() {
-		return textField_5;
+		return descricaoPri;
 	}
 	
 	/*--------------Cadastrar funcionario--------------*/
@@ -787,7 +785,28 @@ public class TelaAdministrador extends JFrame {
 		return senhaFunc;
 	}
 	
-	public void addLinhaFunc() {
+	
+	
+	//Prioridade
+	
+	public JTextField getNomePri() {
+		return nomePri;
+	}
+	
+	public JTextField getDescricaoPri() {
+		return descricaoPri;
+	}
+	
+	public JComboBox getPesoPri() {
+		return pesoPri;
+	}
+	
+	public JComboBox getStatusPri() {
+		return statusPri;
+	}
+	
+	
+	public void addLinha() {
 		DefaultTableModel model =  (DefaultTableModel)table.getModel();
 		ControladorFuncionario controle = new ControladorFuncionario();
 		ArrayList<Funcionario> funcionarios = controle.consultar();
