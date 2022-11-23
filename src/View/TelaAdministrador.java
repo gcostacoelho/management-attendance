@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Controller.ControladorFuncionario;
 import Controller.ControladorManterServico;
+import Controller.ControladorPrioridade;
 import Model.Entity.Funcionario;
 import Model.Entity.Servico;
 
@@ -541,7 +542,7 @@ public class TelaAdministrador extends JFrame {
 		panel_1_1.add(descricaoPri);
 		
 		pesoPri = new JComboBox();
-		pesoPri.setModel(new DefaultComboBoxModel(new String[] {"Antendimento Geral", "Antendimento Preferencial"}));
+		pesoPri.setModel(new DefaultComboBoxModel(new String[] {"Atendimento Geral", "Atendimento Preferencial"}));
 		pesoPri.setBounds(22, 356, 196, 24);
 		panel_1_1.add(pesoPri);
 		
@@ -569,6 +570,18 @@ public class TelaAdministrador extends JFrame {
 		statusPri.setModel(new DefaultComboBoxModel(new String[] {"Ativo", "Inativo"}));
 		statusPri.setBounds(361, 356, 196, 24);
 		panel_1_1.add(statusPri);
+		
+		JButton btnNewButton_2 = new JButton("Cadastrar prioridade");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladorPrioridade controller = new ControladorPrioridade();
+		        controller.executa(TelaAdministrador.this);
+		        JOptionPane.showMessageDialog(null, nomePri.getText() + " Cadastrado com sucesso!");
+		        descricaoPri.setText("");
+			}
+		});
+		btnNewButton_2.setBounds(649, 428, 183, 25);
+		panel_1_1.add(btnNewButton_2);
 		
 		JLabel lblNewLabel_1_2_2_1 = new JLabel("Cadastro de Prioridade");
 		lblNewLabel_1_2_2_1.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -806,7 +819,7 @@ public class TelaAdministrador extends JFrame {
 	}
 	
 	
-	public void addLinha() {
+	public void addLinhaFunc() {
 		DefaultTableModel model =  (DefaultTableModel)table.getModel();
 		ControladorFuncionario controle = new ControladorFuncionario();
 		ArrayList<Funcionario> funcionarios = controle.consultar();
