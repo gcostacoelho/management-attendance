@@ -1,7 +1,7 @@
 package Model.Entity;
 public class Prioridade {
     private String nomePri, descricaoPri;
-    private int peso;
+    private int peso, idServico;
     private boolean statusPri;
      
     public Prioridade() {}
@@ -18,7 +18,15 @@ public class Prioridade {
         return descricaoPri;
     }
 
-    public void setDescricaoPri(String descricaoPri) {
+    public int getIdServico() {
+		return idServico;
+	}
+
+	public void setIdServico(int idServico) {
+		this.idServico = idServico;
+	}
+
+	public void setDescricaoPri(String descricaoPri) {
         this.descricaoPri = descricaoPri;
     }
 

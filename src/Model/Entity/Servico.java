@@ -1,9 +1,14 @@
 package Model.Entity;
 public class Servico {
     private String sigla, nome, desc;
+    private int idServico;
     private boolean status;
 
-    public Servico() {}
+    public int getIdServico() { return idServico; }
+
+	public void setIdServico(int idServico) { this.idServico = idServico; }
+
+	public Servico() {}
     
     public String getSigla() { return sigla; }
     

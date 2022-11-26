@@ -32,4 +32,10 @@ public class ControladorManterServico {
 		ServicoDao servicoDao = new ServicoDao();
 		return servicoDao.consulta();
 	}
+	
+	public ArrayList<Servico> consulta_idServico(){
+		ServicoDao servicoDao = new ServicoDao();
+		return servicoDao.consulta_id();
+	}
+	
 }

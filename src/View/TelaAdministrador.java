@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import Controller.ControladorFuncionario;
 import Controller.ControladorManterServico;
 import Controller.ControladorPrioridade;
+import Model.Entity.ComboItem;
 import Model.Entity.Funcionario;
 import Model.Entity.Servico;
 
@@ -58,6 +59,7 @@ public class TelaAdministrador extends JFrame {
 	private JComboBox permiFunc;
 	private JComboBox pesoPri;
 	private JComboBox statusPri;
+	private JComboBox servico_select;
 	private JTextField usuarioFunc;
 	private JTextField senhaFunc;
 	
@@ -563,12 +565,12 @@ public class TelaAdministrador extends JFrame {
 		
 		JLabel lblNewLabel_2_2_3_1_1 = new JLabel("Informe o Status");
 		lblNewLabel_2_2_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2_2_3_1_1.setBounds(361, 332, 124, 22);
+		lblNewLabel_2_2_3_1_1.setBounds(306, 332, 124, 22);
 		panel_1_1.add(lblNewLabel_2_2_3_1_1);
 		
 		statusPri = new JComboBox();
 		statusPri.setModel(new DefaultComboBoxModel(new String[] {"Ativo", "Inativo"}));
-		statusPri.setBounds(361, 356, 196, 24);
+		statusPri.setBounds(306, 356, 196, 24);
 		panel_1_1.add(statusPri);
 		
 		JButton btnNewButton_2 = new JButton("Cadastrar prioridade");
@@ -582,6 +584,15 @@ public class TelaAdministrador extends JFrame {
 		});
 		btnNewButton_2.setBounds(649, 428, 183, 25);
 		panel_1_1.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_2_2_3_1_1_1 = new JLabel("Informe o serviço");
+		lblNewLabel_2_2_3_1_1_1.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblNewLabel_2_2_3_1_1_1.setBounds(576, 332, 124, 22);
+		panel_1_1.add(lblNewLabel_2_2_3_1_1_1);
+		
+		servico_select = new JComboBox();
+		servico_select.setBounds(573, 356, 196, 24);
+		panel_1_1.add(servico_select);
 		
 		JLabel lblNewLabel_1_2_2_1 = new JLabel("Cadastro de Prioridade");
 		lblNewLabel_1_2_2_1.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -667,6 +678,7 @@ public class TelaAdministrador extends JFrame {
 		btnCadPrio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedComponent(cadastro_prioridade);
+				addItensServico();
 			}
 		});
 		btnCadPrio.setBounds(42, 350, 132, 21);
@@ -798,6 +810,22 @@ public class TelaAdministrador extends JFrame {
 		return senhaFunc;
 	}
 	
+	public void addLinhaFunc() {
+		DefaultTableModel model =  (DefaultTableModel)table.getModel();
+		ControladorFuncionario controle = new ControladorFuncionario();
+		ArrayList<Funcionario> funcionarios = controle.consultar();
+		model.setNumRows(0);
+		for(int i=0; i < funcionarios.size() ; i++) {
+			model.addRow((
+				new String[] {
+					funcionarios.get(i).getNomeFun(), 
+					funcionarios.get(i).getCpf(), 
+					funcionarios.get(i).getCargo()
+				}
+			));
+		}
+	}
+	
 	
 	
 	//Prioridade
@@ -818,20 +846,20 @@ public class TelaAdministrador extends JFrame {
 		return statusPri;
 	}
 	
+	public JComboBox getIdServico() {
+		return servico_select;
+	}
 	
-	public void addLinhaFunc() {
-		DefaultTableModel model =  (DefaultTableModel)table.getModel();
-		ControladorFuncionario controle = new ControladorFuncionario();
-		ArrayList<Funcionario> funcionarios = controle.consultar();
-		model.setNumRows(0);
-		for(int i=0; i < funcionarios.size() ; i++) {
-			model.addRow((
-				new String[] {
-					funcionarios.get(i).getNomeFun(), 
-					funcionarios.get(i).getCpf(), 
-					funcionarios.get(i).getCargo()
-				}
-			));
+	
+	public void addItensServico() {
+		ControladorManterServico controle = new ControladorManterServico();
+		ArrayList<Servico> servicos = controle.consulta_idServico();
+		
+		for(int i = 0;i < servicos.size(); i++) {
+			servico_select.addItem(new ComboItem(servicos.get(i).getNome(), servicos.get(i).getIdServico()));
+			
 		}
+		
+		
 	}
 }

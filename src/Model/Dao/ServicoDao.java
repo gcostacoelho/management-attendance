@@ -30,6 +30,39 @@ public class ServicoDao {
         } 
 	}
 	
+	public ArrayList<Servico>consulta_id(){
+		Conexao conexao = new Conexao();
+		int idServico;
+		PreparedStatement stmt;
+		ArrayList<Servico> servicos;
+		
+		try {
+			stmt = conexao.getConn().prepareStatement("select idServico, nomeSer from Servico");
+
+			ResultSet rs = stmt.executeQuery();
+
+			servicos = new ArrayList<Servico>();
+			
+			while(rs.next()) {
+				Servico servico = new Servico();
+				
+				servico.setIdServico(rs.getInt("idServico"));
+				servico.setNome(rs.getString("nomeSer"));
+				
+				
+				servicos.add(servico);
+			}
+			
+			rs.close();
+			stmt.close();
+			return servicos;
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public ArrayList<Servico> consulta(){
 		Conexao conexao = new Conexao();
 		int statusInt;

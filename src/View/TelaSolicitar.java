@@ -9,6 +9,8 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaSolicitar extends JFrame {
 
@@ -44,6 +46,10 @@ public class TelaSolicitar extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnGeral = new JButton("Atendimento Geral");
+		btnGeral.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnGeral.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnGeral.setBounds(10, 111, 512, 98);
 		contentPane.add(btnGeral);
