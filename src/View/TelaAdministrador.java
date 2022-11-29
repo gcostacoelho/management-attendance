@@ -30,6 +30,7 @@ import Controller.ControladorFuncionario;
 import Controller.ControladorManterServico;
 import Controller.ControladorPrioridade;
 import Model.Entity.Funcionario;
+import Model.Entity.Prioridade;
 import Model.Entity.Servico;
 import Model.Entity.ComboItem;
 
@@ -688,6 +689,7 @@ public class TelaAdministrador extends JFrame {
 		btnListPrio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedComponent(lista_prioridade);
+				addLinhaPri();
 			}
 		});
 		btnListPrio.setBounds(42, 319, 132, 21);
@@ -850,6 +852,26 @@ public class TelaAdministrador extends JFrame {
 		return servico_select;
 	}
 	
+	public void addLinhaPri() {
+		DefaultTableModel model =  (DefaultTableModel)table_2.getModel();
+		ControladorPrioridade controle = new ControladorPrioridade();
+		ArrayList<Prioridade> prioridade = controle.consultar();
+		
+		model.setNumRows(0);
+		for(int i=0; i < prioridade.size() ; i++) {
+			model.addRow((
+				new String[] {
+					prioridade.get(i).getNomePri(),
+					prioridade.get(i).getDescricaoPri(),
+					prioridade.get(i).getPesoStr(),
+					prioridade.get(i).verificaStatus()
+					
+				}
+			));
+		}
+	}
+	
+	
 	
 	public void addItensServico() {
 		ControladorManterServico controle = new ControladorManterServico();
@@ -859,7 +881,5 @@ public class TelaAdministrador extends JFrame {
 			servico_select.addItem(new ComboItem(servicos.get(i).getNome(), servicos.get(i).getIdServico()));
 			
 		}
-		
-		
 	}
 }

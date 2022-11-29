@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import Model.Dao.FuncionarioDao;
 import Model.Dao.PrioridadeDao;
+import Model.Dao.ServicoDao;
 import Model.Entity.Funcionario;
 import Model.Entity.Prioridade;
+import Model.Entity.Servico;
 import Model.Entity.ComboItem;
 import View.TelaAdministrador;
 
@@ -40,5 +42,10 @@ public class ControladorPrioridade {
 		PrioridadeDao prioridadeDao = new PrioridadeDao();
 		prioridadeDao.salvar(prioridade);
 	}
-		
+	
+	public ArrayList<Prioridade> consultar() {
+		PrioridadeDao prioridadeDao = new PrioridadeDao();
+		return prioridadeDao.consulta();
+	}
+	
 }

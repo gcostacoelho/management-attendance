@@ -17,21 +17,17 @@ public class Prioridade {
     public String getDescricaoPri() {
         return descricaoPri;
     }
-
-    public int getIdServico() {
-		return idServico;
-	}
-
-	public void setIdServico(int idServico) {
-		this.idServico = idServico;
-	}
-
+    
 	public void setDescricaoPri(String descricaoPri) {
         this.descricaoPri = descricaoPri;
     }
 
     public int getPeso() {
         return peso;
+    }
+    
+    public String getPesoStr() {
+        return Integer.toString(peso);
     }
 
     public void setPeso(int peso) {
@@ -44,6 +40,22 @@ public class Prioridade {
 
     public void setStatusPri(boolean statusPri) {
         this.statusPri = statusPri;
+    }
+    
+    public int getIdServico() {
+		return idServico;
+	}
+
+	public void setIdServico(int idServico) {
+		this.idServico = idServico;
+	}
+    
+    public String verificaStatus() {
+    	if (this.statusPri == false) {
+    		return "Inativo";
+    	}else {
+    		return "Ativo";
+    	}
     }
     
 }
