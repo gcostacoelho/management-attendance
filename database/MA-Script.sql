@@ -180,9 +180,23 @@ use ma;
 
 insert into Servico (sigla, nomeSer, descricaoSer, statusSer) values("ATP", "Atendimento Preferencial", "Serviço com prioridade destinado aos idosos, deficientes, etc...", 1);
 
+insert into Servico (sigla, nomeSer, descricaoSer, statusSer) values("AGR", "Atendimento Geral", "Serviço para atendimento geral", 1);
+
+insert into Servico (sigla, nomeSer, descricaoSer, statusSer) values("CSA", "Consulta Agendada", "Serviço destinado a consultas agendadas previamente", 1);
+
+insert into Servico (sigla, nomeSer, descricaoSer, statusSer) values("RTE", "Retirada de Exames", "Serviço para a retiradas de exames relizados", 1);
+
 insert into Prioridade (nomePri, descricaoPri, peso, statusPri, Servico_idServico) values ("Preferencial", "Preferencial", 1, 1, 1);
 
+insert into Prioridade (nomePri, descricaoPri, peso, statusPri, Servico_idServico) values ("Normal", "Geral", 3, 1, 2);
+
+insert into Prioridade (nomePri, descricaoPri, peso, statusPri, Servico_idServico) values ("Agendada", "Agendado Geral", 2, 1, 3);
+
+insert into Prioridade (nomePri, descricaoPri, peso, statusPri, Servico_idServico) values ("Retirada", "Retirada Geral", 3, 1, 4);
+
 insert into Senha (numeroSen, dataSen, horaSen, Prioridade_idPrioridade) values (1, curdate(), current_time(), 1);
+
+select max(numeroSen) from Senha;
 
 insert into Guiche (numeroGui, descricaoGui) values("AD1", "Guiche Administrador");
 
@@ -198,7 +212,17 @@ select * from Prioridade;
 select * from Usuario;
 select * from Senha;
 
-select sn.numeroSen, sn.dataSen, sn.horaSen, pr.nomePri, sr.sigla from Senha sn 
+select sn.numeroSen, sn.dataSen, sn.horaSen, pr.nomePri, sr.sigla, sr.nomeSer from Senha sn 
 inner join Prioridade pr on sn.Prioridade_idPrioridade = pr.idPrioridade
-inner join Servico sr on pr.Servico_idServico = sr.idServico;
+inner join Servico sr on pr.Servico_idServico = sr.idServico
+order by sn.numeroSen desc limit 1;
+
+
+DELIMITER //
+CREATE FUNCTION somaSenha()
+RETURNS int
+BEGIN
+	return (select max(numeroSen) + 1 from Senha);
+END //
+DELIMITER ;
 

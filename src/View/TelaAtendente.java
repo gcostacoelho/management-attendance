@@ -62,27 +62,31 @@ public class TelaAtendente extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(20, 134, 172, 21);
-		panel.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton solicitarServico = new JButton("Solicitar Serviço");
+		solicitarServico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaSolicitar menu = new TelaSolicitar();
+				menu.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(20, 190, 172, 21);
-		panel.add(btnNewButton_1);
+		solicitarServico.setBounds(20, 104, 172, 21);
+		panel.add(solicitarServico);
 		
 		JButton btnSair = new JButton("Sair");
 		btnSair.setBounds(20, 570, 172, 21);
 		panel.add(btnSair);
 		
-		JLabel lblNewLabel = new JLabel("MA");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 18));
-		lblNewLabel.setBounds(55, 36, 99, 41);
-		panel.add(lblNewLabel);
+		JLabel lblNewLabel_3 = new JLabel("Management Attendance");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_3.setBounds(10, 36, 187, 25);
+		panel.add(lblNewLabel_3);
+		
+		JPanel panel_11 = new JPanel();
+		panel_11.setForeground(Color.BLACK);
+		panel_11.setBackground(Color.BLACK);
+		panel_11.setBounds(15, 71, 182, 2);
+		panel.add(panel_11);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.BLACK);

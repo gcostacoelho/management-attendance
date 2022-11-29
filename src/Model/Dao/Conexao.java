@@ -10,7 +10,7 @@ public class Conexao {
 	
 	public Conexao() {
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://172.17.0.2:3306/ma", "root", "root");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ma", "root", "");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

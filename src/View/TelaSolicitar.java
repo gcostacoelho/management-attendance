@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controller.ControladorSolicitarServico;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -48,6 +51,11 @@ public class TelaSolicitar extends JFrame {
 		JButton btnGeral = new JButton("Atendimento Geral");
 		btnGeral.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ControladorSolicitarServico controler = new ControladorSolicitarServico();
+				controler.adicionaSenha(2);
+				TelaTicket telaTicket = new TelaTicket();
+				telaTicket.setVisible(true);
+				telaTicket.setSenha(controler.ultimaSenha());
 			}
 		});
 		btnGeral.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -55,16 +63,43 @@ public class TelaSolicitar extends JFrame {
 		contentPane.add(btnGeral);
 		
 		JButton btnAgendada = new JButton("Consulta Agendada");
+		btnAgendada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladorSolicitarServico controler = new ControladorSolicitarServico();
+				controler.adicionaSenha(3);
+				TelaTicket telaTicket = new TelaTicket();
+				telaTicket.setVisible(true);
+				telaTicket.setSenha(controler.ultimaSenha());
+			}
+		});
 		btnAgendada.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnAgendada.setBounds(10, 367, 512, 98);
 		contentPane.add(btnAgendada);
 		
 		JButton btnPreferencial = new JButton("Atendimento Preferencial");
+		btnPreferencial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladorSolicitarServico controler = new ControladorSolicitarServico();
+				controler.adicionaSenha(1);
+				TelaTicket telaTicket = new TelaTicket();
+				telaTicket.setVisible(true);
+				telaTicket.setSenha(controler.ultimaSenha());
+			}
+		});
 		btnPreferencial.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnPreferencial.setBounds(566, 111, 512, 98);
 		contentPane.add(btnPreferencial);
 		
 		JButton btnRetirada = new JButton("Retirada de Exames");
+		btnRetirada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ControladorSolicitarServico controler = new ControladorSolicitarServico();
+				controler.adicionaSenha(4);
+				TelaTicket telaTicket = new TelaTicket();
+				telaTicket.setVisible(true);
+				telaTicket.setSenha(controler.ultimaSenha());
+			}
+		});
 		btnRetirada.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnRetirada.setBounds(566, 367, 512, 98);
 		contentPane.add(btnRetirada);

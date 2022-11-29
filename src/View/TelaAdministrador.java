@@ -29,9 +29,9 @@ import javax.swing.table.DefaultTableModel;
 import Controller.ControladorFuncionario;
 import Controller.ControladorManterServico;
 import Controller.ControladorPrioridade;
-import Model.Entity.ComboItem;
 import Model.Entity.Funcionario;
 import Model.Entity.Servico;
+import Model.Entity.ComboItem;
 
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultComboBoxModel;
@@ -95,8 +95,16 @@ public class TelaAdministrador extends JFrame {
 		contentPane.setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(204, -24, 930, 650);
+		tabbedPane.setBounds(204, -26, 930, 652);
 		contentPane.add(tabbedPane);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("New tab", null, panel, null);
+		panel.setLayout(null);
+		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBounds(462, 5, 1, 1);
+		panel.add(layeredPane);
 		
 		JPanel lista_funcionario = new JPanel();
 		tabbedPane.addTab("New tab", null, lista_funcionario, null);
@@ -164,14 +172,6 @@ public class TelaAdministrador extends JFrame {
 		txtpnCargo.setBackground(new Color(154, 153, 150));
 		txtpnCargo.setBounds(607, 10, 64, 21);
 		desc_bar_1.add(txtpnCargo);
-		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("New tab", null, panel, null);
-		panel.setLayout(null);
-		
-		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(462, 5, 1, 1);
-		panel.add(layeredPane);
 		
 		JPanel lista_servicos = new JPanel();
 		lista_servicos.setForeground(new Color(51, 51, 51));
