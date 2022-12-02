@@ -363,6 +363,8 @@ public class TelaAdministrador extends JFrame {
 				emailFunc.setText("");
 				nomeFunc.setText("");
 				cargoFunc.setText("");
+				usuarioFunc.setText("");
+				senhaFunc.setText("");
 				
 			}
 		});
@@ -710,6 +712,9 @@ public class TelaAdministrador extends JFrame {
 		JButton btnSair = new JButton("Sair");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaLogin login = new TelaLogin();
+				login.frame.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnSair.setBounds(42, 574, 132, 21);

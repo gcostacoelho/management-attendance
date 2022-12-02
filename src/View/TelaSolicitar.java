@@ -11,6 +11,8 @@ import Controller.ControladorSolicitarServico;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -39,6 +41,7 @@ public class TelaSolicitar extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaSolicitar() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1102, 626);
 		contentPane = new JPanel();
@@ -56,6 +59,9 @@ public class TelaSolicitar extends JFrame {
 				TelaTicket telaTicket = new TelaTicket();
 				telaTicket.setVisible(true);
 				telaTicket.setSenha(controler.ultimaSenha());
+				
+				TelaAtendente tela = new TelaAtendente();
+				tela.addLinhaSenha();
 			}
 		});
 		btnGeral.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -70,6 +76,9 @@ public class TelaSolicitar extends JFrame {
 				TelaTicket telaTicket = new TelaTicket();
 				telaTicket.setVisible(true);
 				telaTicket.setSenha(controler.ultimaSenha());
+				
+				TelaAtendente tela = new TelaAtendente();
+				tela.addLinhaSenha();
 			}
 		});
 		btnAgendada.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -84,6 +93,9 @@ public class TelaSolicitar extends JFrame {
 				TelaTicket telaTicket = new TelaTicket();
 				telaTicket.setVisible(true);
 				telaTicket.setSenha(controler.ultimaSenha());
+				
+				TelaAtendente tela = new TelaAtendente();
+				tela.addLinhaSenha();
 			}
 		});
 		btnPreferencial.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -98,6 +110,9 @@ public class TelaSolicitar extends JFrame {
 				TelaTicket telaTicket = new TelaTicket();
 				telaTicket.setVisible(true);
 				telaTicket.setSenha(controler.ultimaSenha());
+				
+				TelaAtendente tela = new TelaAtendente();
+				tela.addLinhaSenha();
 			}
 		});
 		btnRetirada.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -108,5 +123,19 @@ public class TelaSolicitar extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 27));
 		lblNewLabel.setBounds(366, 10, 399, 63);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnFechar = new JButton("Fechar");
+		btnFechar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int input = JOptionPane.showConfirmDialog(null, "Deseja realmente fechar?", "", 
+		                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				
+				if(input == 0) {
+					setVisible(false);
+				}
+			}
+		});
+		btnFechar.setBounds(497, 552, 117, 25);
+		contentPane.add(btnFechar);
 	}
 }

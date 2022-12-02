@@ -178,6 +178,18 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 use ma;
 
+DELIMITER //
+CREATE FUNCTION somaSenha()
+RETURNS int
+READS SQL DATA
+DETERMINISTIC
+BEGIN
+	return (select max(numeroSen) + 1 from Senha);
+END //
+DELIMITER ;
+
+
+
 insert into Servico (sigla, nomeSer, descricaoSer, statusSer) values("ATP", "Atendimento Preferencial", "Serviço com prioridade destinado aos idosos, deficientes, etc...", 1);
 
 insert into Servico (sigla, nomeSer, descricaoSer, statusSer) values("AGR", "Atendimento Geral", "Serviço para atendimento geral", 1);
@@ -205,6 +217,11 @@ values ("Administrador", "21020312007", "94512355", "admin@gmail.com", "Administ
 
 insert into Usuario (usuario, senha, Funcionario_idFuncionario) values ("admin", "admin", 1);
 
+insert into Funcionario (nomeFun, cpf, telefone, email, cargo, permissao, Guiche_idGuiche) 
+values ("Atendente", "12345678990", "956798546", "atendente@gmail.com", "Atendente", 2, 1);
+
+insert into Usuario (usuario, senha, Funcionario_idFuncionario) values ("atend", "atend", 2);
+
 select * from Guiche;
 select * from Servico;
 select * from Funcionario;
@@ -218,11 +235,5 @@ inner join Servico sr on pr.Servico_idServico = sr.idServico
 order by sn.numeroSen desc limit 1;
 
 
-DELIMITER //
-CREATE FUNCTION somaSenha()
-RETURNS int
-BEGIN
-	return (select max(numeroSen) + 1 from Senha);
-END //
-DELIMITER ;
+
 

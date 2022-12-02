@@ -7,6 +7,8 @@ public class Atendimento {
     private String nota, statusAte;
     private Date dataAte;
     private Time horaAte;
+    
+    public Atendimento() {}
 
     public int chamarProx(int senhaAtual){
         return senhaAtual + 1;
@@ -62,14 +64,5 @@ public class Atendimento {
     public void setHoraAte(Time horaAte) {
         this.horaAte = horaAte;
     }
-
-
-    public Atendimento(String nota, String statusAte, Date dataAte, Time horaAte) {
-        this.nota = nota;
-        this.statusAte = statusAte;
-        this.dataAte = dataAte;
-        this.horaAte = horaAte;
-    }
-
     
 }
