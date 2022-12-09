@@ -19,6 +19,7 @@ import Model.Entity.ComboItem;
 import Model.Entity.Guiche;
 import Model.Entity.Prioridade;
 import Model.Entity.Senha;
+import Model.Entity.SenhasMonitor;
 import Model.Entity.Servico;
 import Model.Entity.Ticket;
 
@@ -45,6 +46,7 @@ public class TelaAtendente extends JFrame implements Observer{
 	private JPanel content;
 	private JTable tableSenha;
 	private JComboBox guiche_select;
+	static ArrayList<SenhasMonitor> senhasMonitor = new ArrayList();
 	
 	/**
 	 * Launch the application.
@@ -86,6 +88,7 @@ public class TelaAtendente extends JFrame implements Observer{
 			public void actionPerformed(ActionEvent e) {
 				TelaSolicitar menu = new TelaSolicitar();
 				menu.setVisible(true);
+				System.out.println(senhasMonitor);
 			}
 		});
 		solicitarServico.setBounds(20, 104, 172, 21);
@@ -113,6 +116,16 @@ public class TelaAtendente extends JFrame implements Observer{
 		panel_11.setBackground(Color.BLACK);
 		panel_11.setBounds(15, 71, 182, 2);
 		panel.add(panel_11);
+		
+		JButton btnMonitor = new JButton("Monitor");
+		btnMonitor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Monitor monitor = new Monitor();
+				monitor.setVisible(true);
+			}
+		});
+		btnMonitor.setBounds(20, 149, 172, 21);
+		panel.add(btnMonitor);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.BLACK);
@@ -148,6 +161,11 @@ public class TelaAtendente extends JFrame implements Observer{
 		panel_2.add(username);
 		
 		JButton btnNewButton_2 = new JButton("Chamar próxima senha");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chamaProximaSenha();
+			}
+		});
 		btnNewButton_2.setBounds(231, 165, 196, 41);
 		content.add(btnNewButton_2);
 		
@@ -207,6 +225,14 @@ public class TelaAtendente extends JFrame implements Observer{
 					tickets.get(i).getHoraSenha()
 				}
 			));
+			
+			SenhasMonitor senhas = new SenhasMonitor();
+			senhas.setSenha(tickets.get(i).getSiglaServico()  + " " +
+					Integer.toString(tickets.get(i).getSenha()) + " ");
+			senhas.setStatus(true);
+			
+			senhasMonitor.add(senhas);
+			
 		}
 	}
 	
@@ -228,6 +254,15 @@ public class TelaAtendente extends JFrame implements Observer{
 	            System.err.println(e);
 	        }
 	    }).start();
+	}
+	
+	public void chamaProximaSenha() {
+		for(int i = 0;i < senhasMonitor.size(); i++) {
+			if (senhasMonitor.get(i).getStatus() == true) {
+				senhasMonitor.get(i).setStatus(false);
+				break;
+			}
+		}
 	}
 	
 }
