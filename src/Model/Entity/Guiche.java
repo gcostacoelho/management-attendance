@@ -12,7 +12,6 @@ public class Guiche {
         return numeroGui;
     }
 
-
     public int getNumeroGui() {
         return numeroGui;
     }
@@ -32,11 +31,6 @@ public class Guiche {
         this.descricaoGui = descricaoGui;
     }
 
-
-    public Guiche(int numeroGui, String descricaoGui) {
-        this.numeroGui = numeroGui;
-        this.descricaoGui = descricaoGui;
-    }
-
+    public Guiche() { }
     
 }

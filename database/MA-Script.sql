@@ -210,7 +210,7 @@ insert into Senha (numeroSen, dataSen, horaSen, Prioridade_idPrioridade) values 
 
 select max(numeroSen) from Senha;
 
-insert into Guiche (numeroGui, descricaoGui) values("AD1", "Guiche Administrador");
+insert into Guiche (numeroGui, descricaoGui) values("AD1", "Guiche Principal");
 
 insert into Funcionario (nomeFun, cpf, telefone, email, cargo, permissao, Guiche_idGuiche) 
 values ("Administrador", "21020312007", "94512355", "admin@gmail.com", "Administrador", 1, 1);

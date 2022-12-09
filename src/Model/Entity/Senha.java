@@ -2,7 +2,10 @@ package Model.Entity;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Senha {
+import Interfaces.Observable;
+import Interfaces.Observer;
+
+public class Senha implements Observable{
     private int numeroSen;
     private Date dateSen;
     private Time horaSen;
@@ -44,7 +47,16 @@ public class Senha {
         this.horaSen = horaSen;
     }
 
-    
-    
+	public void subscribe(Observer obs) {
+		
+	}
+	
+	public void unsubscribe(Observer obs) {
+		
+	}
+	
+	public void notifica() {
+		
+	}
     
 }
